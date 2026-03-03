@@ -455,6 +455,56 @@ const PAGE_RESOURCES = {
     ]
   },
 
+  'home-skills': {
+    intro: 'Home maintenance guidance draws from This Old House, Family Handyman, the National Fire Protection Association (NFPA), and EPA indoor air quality guidelines.',
+    videos: [
+      {
+        emoji: '🚰',
+        title: 'How to Fix a Running Toilet',
+        channel: 'This Old House',
+        url: 'https://www.youtube.com/results?search_query=how+to+fix+running+toilet+this+old+house'
+      },
+      {
+        emoji: '⚡',
+        title: 'How to Replace an Electrical Outlet',
+        channel: 'This Old House',
+        url: 'https://www.youtube.com/results?search_query=how+to+replace+electrical+outlet+this+old+house'
+      },
+      {
+        emoji: '🔨',
+        title: 'Essential Hand Tools Every Homeowner Needs',
+        channel: 'Family Handyman',
+        url: 'https://www.youtube.com/results?search_query=essential+tools+every+homeowner+needs+family+handyman'
+      },
+      {
+        emoji: '🌬️',
+        title: 'HVAC Filter Change & Air Conditioning Maintenance',
+        channel: 'Skill Builder',
+        url: 'https://www.youtube.com/results?search_query=how+to+change+hvac+air+filter+ac+maintenance+diy'
+      },
+      {
+        emoji: '🎨',
+        title: 'How to Paint a Room Like a Pro',
+        channel: 'This Old House',
+        url: 'https://www.youtube.com/results?search_query=how+to+paint+a+room+like+a+pro+tips+this+old+house'
+      },
+      {
+        emoji: '🪨',
+        title: 'How to Patch Drywall Holes',
+        channel: 'Home Repair Tutor',
+        url: 'https://www.youtube.com/results?search_query=how+to+patch+drywall+holes+all+sizes+diy'
+      },
+    ],
+    sources: [
+      { name: 'This Old House', url: 'https://www.thisoldhouse.com', desc: 'Step-by-step home repair and improvement guides' },
+      { name: 'Family Handyman', url: 'https://www.familyhandyman.com', desc: 'DIY home maintenance and repair tutorials' },
+      { name: 'NFPA — Home Safety', url: 'https://www.nfpa.org/education-and-research/home-fire-safety', desc: 'National Fire Protection Association — smoke alarm and fire safety guidelines' },
+      { name: 'EPA Indoor Air Quality', url: 'https://www.epa.gov/indoor-air-quality-iaq', desc: 'U.S. EPA guidance on mould, ventilation, and indoor air quality' },
+      { name: 'Ask This Old House', url: 'https://www.thisoldhouse.com/ask-this-old-house', desc: 'Expert-answered home repair questions archive' },
+      { name: 'HomeAdvisor — DIY Guide', url: 'https://www.homeadvisor.com/r/home-improvement-guides', desc: 'Cost estimates and DIY vs. hire guidance for home projects' },
+    ]
+  },
+
   books: {
     intro: 'All recommended books are widely acclaimed, peer-reviewed or fact-checked, and available through public libraries worldwide.',
     videos: [

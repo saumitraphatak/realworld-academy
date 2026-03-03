@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: 'meditation.html', label: '🧘 Meditation', key: 'meditation' },
   { href: 'puzzles.html', label: '🧩 Puzzles', key: 'puzzles' },
   { href: 'books.html', label: '📚 Books', key: 'books' },
+  { href: 'home-skills.html', label: '🔧 Home Skills', key: 'home-skills' },
 ];
 
 function renderNav(activeKey) {

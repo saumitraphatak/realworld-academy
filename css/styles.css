@@ -36,6 +36,8 @@
   --puz-bg:     #fffbeb;
   --books:      #92400e;
   --books-bg:   #fef3c7;
+  --home:       #0d9488;
+  --home-bg:    #f0fdfa;
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -360,6 +362,11 @@ p.lead { font-size: 1.125rem; color: var(--text-muted); }
 .cat-books .cat-icon, .cat-books .cat-link { color: var(--books); }
 .cat-books .tag { background: var(--books-bg); color: var(--books); }
 .cat-books::after { background: var(--books); }
+
+.cat-home .cat-icon { background: var(--home-bg); }
+.cat-home .cat-icon, .cat-home .cat-link { color: var(--home); }
+.cat-home .tag { background: var(--home-bg); color: var(--home); }
+.cat-home::after { background: var(--home); }
 
 /* ===== TOPIC SECTIONS ===== */
 .topics { display: flex; flex-direction: column; gap: var(--space-6); }
