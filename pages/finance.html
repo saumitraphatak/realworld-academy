@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Finance — RealWorld Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav class="nav" id="main-nav"></nav>
+
+<section class="page-hero section">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>›</span>
+      <span>Personal Finance</span>
+    </div>
+    <div class="page-hero-icon" style="background:var(--finance-bg)">💰</div>
+    <h1>Personal Finance</h1>
+    <p class="lead">The money stuff school skipped. How to save, invest, budget, and build actual wealth — regardless of your income.</p>
+  </div>
+</section>
+
+<!-- QUICK STATS -->
+<section class="section" style="padding-top:0">
+<div class="container">
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--finance)">78%</div>
+      <div class="stat-label">of Americans live paycheck to paycheck</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--finance)">$0</div>
+      <div class="stat-label">finance education required in most schools</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--finance)">7%</div>
+      <div class="stat-label">avg annual stock market return (historical)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--finance)">72</div>
+      <div class="stat-label">the "Rule of 72" — years to double money</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- TOPICS -->
+<section class="section" style="padding-top:0">
+<div class="container">
+
+  <div class="section-title">
+    <h2>Finance Fundamentals</h2>
+    <p>Click any topic to expand the full lesson.</p>
+  </div>
+
+  <div class="topics">
+
+    <!-- 1. Compound Interest -->
+    <div class="topic-card">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <div class="topic-num" style="background:var(--finance-bg);color:var(--finance)">1</div>
+          <div>
+            <h3>The Magic of Compound Interest</h3>
+            <p>The single most powerful concept in personal finance — and why starting early is everything.</p>
+          </div>
+        </div>
+        <span class="topic-chevron">▾</span>
+      </div>
+      <div class="topic-body">
+        <div class="topic-content">
+          <p>Compound interest is interest on interest. When your money earns returns, those returns then earn their own returns. Over decades, this creates exponential — not linear — growth.</p>
+
+          <div class="callout callout-fact" style="margin:1.5rem 0">
+            <span class="callout-icon">📐</span>
+            <div>
+              <h4>The Rule of 72</h4>
+              <p>Divide 72 by your annual interest rate to find how many years it takes to double your money. At 7% return: 72 ÷ 7 = ~10 years to double. At 3%: 24 years. This is why high-yield savings accounts (5%) beat regular savings (0.5%) by decades.</p>
+            </div>
+          </div>
+
+          <!-- Interactive Calculator -->
+          <div class="calculator">
+            <h3 class="calc-title">💸 Compound Interest Calculator</h3>
+            <div class="calc-grid">
+              <div class="form-group">
+                <label class="form-label">Starting Amount ($)</label>
+                <input type="number" class="form-input" id="ci-principal" value="1000" min="0">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Monthly Contribution ($)</label>
+                <input type="number" class="form-input" id="ci-monthly" value="200" min="0">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Annual Return (%)</label>
+                <input type="number" class="form-input" id="ci-rate" value="7" min="0" max="30" step="0.5">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Years</label>
+                <input type="number" class="form-input" id="ci-years" value="30" min="1" max="60">
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="calculateCI()">Calculate →</button>
+            <div class="calc-result" id="ci-result" style="margin-top:1.5rem">
+              <div class="res-item"><div class="res-num" id="res-total">$0</div><div class="res-label">Final Amount</div></div>
+              <div class="res-item"><div class="res-num" id="res-contributed">$0</div><div class="res-label">You Contributed</div></div>
+              <div class="res-item"><div class="res-num" id="res-gains">$0</div><div class="res-label">Growth (Interest)</div></div>
+            </div>
+            <div class="chart-wrap"><canvas id="ci-chart"></canvas></div>
+          </div>
+
+          <div class="callout callout-tip" style="margin-top:1.5rem">
+            <span class="callout-icon">⏰</span>
+            <div>
+              <h4>Start at 22 vs 32: A $100k+ Difference</h4>
+              <p>Investing $200/month from age 22 to 65 at 7%: ~$525,000. Starting at 32? ~$250,000. The 10-year head start — just from compound growth on earlier contributions — makes a $275,000 difference. Time in the market beats timing the market, every time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Budgeting -->
+    <div class="topic-card">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <div class="topic-num" style="background:var(--finance-bg);color:var(--finance)">2</div>
+          <div>
+            <h3>The 50/30/20 Budget Rule</h3>
+            <p>A dead-simple budgeting framework that actually works for most people.</p>
+          </div>
+        </div>
+        <span class="topic-chevron">▾</span>
+      </div>
+      <div class="topic-body">
+        <div class="topic-content">
+          <p>The 50/30/20 rule, popularized by Senator Elizabeth Warren, divides your after-tax income into three categories. It's flexible enough for real life but structured enough to actually work.</p>
+          <div class="info-grid" style="margin-top:1.5rem">
+            <div class="info-block" style="border-top:3px solid var(--finance)">
+              <h4>🏠 50% — Needs</h4>
+              <p>Rent/mortgage, groceries, utilities, minimum debt payments, transportation. These are non-negotiables. If your needs exceed 50%, your cost of living is too high — consider housing alternatives.</p>
+            </div>
+            <div class="info-block" style="border-top:3px solid #f59e0b">
+              <h4>🎉 30% — Wants</h4>
+              <p>Restaurants, Netflix, gym, travel, hobbies. These improve quality of life. The goal isn't to eliminate them — it's to be intentional. Ask: "Does this genuinely make me happy or am I just spending?"</p>
+            </div>
+            <div class="info-block" style="border-top:3px solid var(--science)">
+              <h4>💰 20% — Savings & Debt</h4>
+              <p>Emergency fund, retirement contributions (401k, IRA), and extra debt paydown. Pay yourself first — automate this transfer on payday so it's never optional.</p>
+            </div>
+          </div>
+          <div class="callout callout-tip" style="margin-top:1.5rem">
+            <span class="callout-icon">🎯</span>
+            <div>
+              <h4>Pro tip: Pay yourself first</h4>
+              <p>Set up an automatic transfer to savings on the same day you get paid. People who do this save 3x more than those who save "whatever's left at month-end." Whatever's left is always zero.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Emergency Fund -->
+    <div class="topic-card">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <div class="topic-num" style="background:var(--finance-bg);color:var(--finance)">3</div>
+          <div>
+            <h3>Emergency Fund: Your Financial Immune System</h3>
+            <p>Why 3–6 months of expenses in cash is the foundation of all financial health.</p>
+          </div>
+        </div>
+        <span class="topic-chevron">▾</span>
+      </div>
+      <div class="topic-body">
+        <div class="topic-content">
+          <p>An emergency fund is liquid cash set aside for genuine emergencies: job loss, medical bills, car breakdown, home repair. Without one, any unexpected expense becomes debt.</p>
+          <div class="steps" style="margin:1.5rem 0">
+            <div class="step">
+              <div class="step-num" style="background:var(--finance-bg);color:var(--finance)">1</div>
+              <div class="step-content">
+                <h4>Calculate your monthly expenses</h4>
+                <p>Add up rent + food + utilities + transport + minimum payments. This is your monthly "survival number."</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" style="background:var(--finance-bg);color:var(--finance)">2</div>
+              <div class="step-content">
+                <h4>Set a target: 3–6 months</h4>
+                <p>Stable job with no dependents? 3 months is fine. Freelancer, single income family, or unstable job? Aim for 6 months.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" style="background:var(--finance-bg);color:var(--finance)">3</div>
+              <div class="step-content">
+                <h4>Keep it in a high-yield savings account</h4>
+                <p>Not under the mattress, not in stocks. A high-yield savings account (currently ~4–5% APY) keeps it accessible but earns something while it waits.</p>
+              </div>
+            </div>
+          </div>
+          <div class="callout callout-warn">
+            <span class="callout-icon">⚠️</span>
+            <div>
+              <h4>What is NOT an emergency</h4>
+              <p>A sale, a vacation, a new phone, Christmas gifts. An emergency fund is insurance. Treat it that way — rebuilding it after use is a financial priority.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Investing Basics -->
+    <div class="topic-card">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <div class="topic-num" style="background:var(--finance-bg);color:var(--finance)">4</div>
+          <div>
+            <h3>Investing 101: Index Funds vs Stock Picking</h3>
+            <p>Why most professional fund managers lose to a simple index fund — and what that means for you.</p>
+          </div>
+        </div>
+        <span class="topic-chevron">▾</span>
+      </div>
+      <div class="topic-body">
+        <div class="topic-content">
+          <p>Investing feels complex but the evidence-backed approach is remarkably simple. Here's what actually works:</p>
+          <div class="info-grid" style="margin-top:1.5rem">
+            <div class="info-block" style="border-top:3px solid var(--finance)">
+              <h4>📊 Index Funds</h4>
+              <p>An index fund buys a tiny piece of every company in an index (e.g., the S&P 500 — the 500 largest US companies). When the market grows, you grow with it. Low fees (0.03–0.1%). Historically returns ~7-10% annually.</p>
+            </div>
+            <div class="info-block" style="border-top:3px solid #dc2626">
+              <h4>🎲 Stock Picking</h4>
+              <p>Picking individual stocks is gambling unless you have an information edge. Over 15-year periods, 90%+ of actively managed funds underperform index funds — after fees. This includes Wall Street professionals.</p>
+            </div>
+            <div class="info-block" style="border-top:3px solid #7c3aed">
+              <h4>🏦 Tax-Advantaged Accounts</h4>
+              <p>Invest inside a 401(k) (employer match = free money), IRA, or Roth IRA first. These accounts let your money grow tax-free or tax-deferred, dramatically increasing long-term returns.</p>
+            </div>
+            <div class="info-block" style="border-top:3px solid #f59e0b">
+              <h4>📅 Dollar-Cost Averaging</h4>
+              <p>Invest a fixed amount monthly regardless of whether markets are up or down. This removes the pressure of timing the market. When prices fall, you automatically buy more shares. It works.</p>
+            </div>
+          </div>
+          <div class="callout callout-tip">
+            <span class="callout-icon">✅</span>
+            <div>
+              <h4>Warren Buffett's advice for ordinary investors</h4>
+              <p>"Consistently buy an S&P 500 low-cost index fund. I think it's the thing that makes the most sense practically all of the time." — Warren Buffett, arguably the greatest investor in history.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Debt -->
+    <div class="topic-card">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <div class="topic-num" style="background:var(--finance-bg);color:var(--finance)">5</div>
+          <div>
+            <h3>Good Debt vs Bad Debt</h3>
+            <p>Not all debt is the enemy. Here's how to tell the difference.</p>
+          </div>
+        </div>
+        <span class="topic-chevron">▾</span>
+      </div>
+      <div class="topic-body">
+        <div class="topic-content">
+          <div class="info-grid">
+            <div class="info-block" style="border-top:3px solid var(--finance)">
+              <h4>✅ Good Debt (below ~6% interest)</h4>
+              <p>A mortgage on a home you can afford. Student loans for a high-return degree. A business loan with clear profit potential. If the debt funds something that grows in value or income, it can be worth taking.</p>
+            </div>
+            <div class="info-block" style="border-top:3px solid #dc2626">
+              <h4>🚫 Bad Debt (above ~8% interest)</h4>
+              <p>Credit card debt at 20–30% APR. Payday loans at 300%+ APR. Car loans for new cars you can't really afford. Store credit cards. These destroy wealth at compound speed in reverse.</p>
+            </div>
+          </div>
+          <p style="margin-top:1.5rem">The debt avalanche method: pay minimums on all debts, then throw every extra dollar at the highest-interest debt first. Mathematically optimal. The debt snowball (smallest balance first) is psychologically easier but costs more in interest.</p>
+          <div class="callout callout-fact">
+            <span class="callout-icon">📊</span>
+            <div>
+              <h4>Credit Card Math</h4>
+              <p>A $5,000 credit card balance at 24% APR, paying only minimums: you'll be paying it off for <strong>17 years</strong> and pay <strong>$7,000+ in interest alone</strong> — more than the original balance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Taxes -->
+    <div class="topic-card">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <div class="topic-num" style="background:var(--finance-bg);color:var(--finance)">6</div>
+          <div>
+            <h3>Taxes: What Everyone Should Know</h3>
+            <p>Tax brackets, deductions, capital gains — demystified in plain English.</p>
+          </div>
+        </div>
+        <span class="topic-chevron">▾</span>
+      </div>
+      <div class="topic-body">
+        <div class="topic-content">
+          <div class="callout callout-info">
+            <span class="callout-icon">💡</span>
+            <div>
+              <h4>The Biggest Tax Myth: "Moving to a higher bracket means I earn less"</h4>
+              <p>Tax brackets are marginal — you only pay the higher rate on income above each threshold. If the 22% bracket starts at $44,725, only dollars earned above that are taxed at 22%. Your first $10,275 is always taxed at 10%.</p>
+            </div>
+          </div>
+          <div class="info-grid" style="margin-top:1.5rem">
+            <div class="info-block">
+              <h4>📉 Tax Deductions</h4>
+              <p>Reduce your taxable income. Mortgage interest, student loan interest, 401(k) contributions, and health insurance premiums (if self-employed) are common deductions.</p>
+            </div>
+            <div class="info-block">
+              <h4>💵 Tax Credits</h4>
+              <p>Better than deductions — they reduce your actual tax bill dollar-for-dollar. Child Tax Credit, Earned Income Credit, education credits. Always check what you qualify for.</p>
+            </div>
+            <div class="info-block">
+              <h4>📈 Capital Gains Tax</h4>
+              <p>Profits from selling investments held over 1 year are taxed at 0%, 15%, or 20% (long-term rates) — much lower than ordinary income. Hold investments longer than 1 year when possible.</p>
+            </div>
+            <div class="info-block">
+              <h4>🏦 Retirement Account Tax Magic</h4>
+              <p>Traditional 401k/IRA: contribute pre-tax, pay tax when you withdraw in retirement. Roth 401k/IRA: contribute post-tax, withdrawals in retirement are 100% tax-free. Young and in a low bracket? Roth wins.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Net Worth -->
+    <div class="topic-card">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <div class="topic-num" style="background:var(--finance-bg);color:var(--finance)">7</div>
+          <div>
+            <h3>Net Worth: The Number That Actually Matters</h3>
+            <p>Income is what you earn. Net worth is what you keep. Only one truly measures financial health.</p>
+          </div>
+        </div>
+        <span class="topic-chevron">▾</span>
+      </div>
+      <div class="topic-body">
+        <div class="topic-content">
+          <p><strong>Net Worth = Assets − Liabilities</strong></p>
+          <p style="margin-top:0.75rem">Assets: cash, investments, home equity, retirement accounts, valuables. Liabilities: mortgage balance, car loan, student loans, credit card debt.</p>
+          <div class="callout callout-tip" style="margin-top:1.5rem">
+            <span class="callout-icon">📊</span>
+            <div>
+              <h4>Track it monthly</h4>
+              <p>A free spreadsheet or app like Personal Capital (Empower) tracks your net worth automatically. Watching it grow is one of the most motivating things you can do for your financial behavior. The goal: make it go up every month.</p>
+            </div>
+          </div>
+          <p style="margin-top:1.5rem">A high income with high spending creates zero net worth. A moderate income with disciplined saving builds real wealth. The "millionaire next door" often drives a used car and lives in a modest house — their wealth is in assets, not appearances.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2025 RealWorld Academy</p>
+      <div style="display:flex;gap:1rem">
+        <a href="../index.html" style="color:#94a3b8">← Back to Home</a>
+        <a href="psychology.html" style="color:#94a3b8">Next: Psychology →</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/nav.js"></script>
+<script>renderNav('finance');</script>
+<script>
+let ciChart = null;
+
+function fmt(n) {
+  return '$' + Math.round(n).toLocaleString();
+}
+
+function calculateCI() {
+  const principal = parseFloat(document.getElementById('ci-principal').value) || 0;
+  const monthly = parseFloat(document.getElementById('ci-monthly').value) || 0;
+  const rate = parseFloat(document.getElementById('ci-rate').value) / 100 / 12;
+  const months = parseInt(document.getElementById('ci-years').value) * 12;
+
+  const labels = [], totalData = [], contributedData = [];
+  let balance = principal;
+
+  for (let m = 1; m <= months; m++) {
+    balance = balance * (1 + rate) + monthly;
+    if (m % 12 === 0) {
+      const year = m / 12;
+      labels.push('Year ' + year);
+      totalData.push(Math.round(balance));
+      contributedData.push(Math.round(principal + monthly * m));
+    }
+  }
+
+  const contributed = principal + monthly * months;
+  const gains = balance - contributed;
+
+  document.getElementById('res-total').textContent = fmt(balance);
+  document.getElementById('res-contributed').textContent = fmt(contributed);
+  document.getElementById('res-gains').textContent = fmt(gains);
+
+  const ctx = document.getElementById('ci-chart').getContext('2d');
+  if (ciChart) ciChart.destroy();
+  ciChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Total Value', data: totalData, fill: true, backgroundColor: 'rgba(5,150,105,0.1)', borderColor: '#059669', tension: 0.4, pointRadius: 2 },
+        { label: 'Amount Contributed', data: contributedData, fill: true, backgroundColor: 'rgba(5,150,105,0.05)', borderColor: '#94a3b8', tension: 0.4, pointRadius: 2, borderDash: [5,5] }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: c => fmt(c.parsed.y) } } },
+      scales: { y: { ticks: { callback: v => '$' + (v >= 1000 ? (v/1000).toFixed(0)+'k' : v) } } }
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', calculateCI);
+</script>
+</body>
+</html>

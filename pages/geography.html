@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geography & World — RealWorld Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<nav class="nav" id="main-nav"></nav>
+
+<section class="page-hero section">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>›</span><span>Geography</span></div>
+    <div class="page-hero-icon" style="background:var(--geo-bg)">🌍</div>
+    <h1>Geography & The World</h1>
+    <p class="lead">Geography isn't just maps — it explains why countries are rich or poor, why cities exist where they do, and why civilizations rose and fell where they did.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+<div class="container">
+
+  <div class="callout callout-fact" style="margin-bottom:3rem">
+    <span class="callout-icon">💡</span>
+    <div>
+      <h4>The Central Thesis: Geography shapes destiny</h4>
+      <p>Jared Diamond's "Guns, Germs, and Steel" argues that European colonization wasn't due to genetic or cultural superiority — it was geography. Eurasia's east-west axis allowed crops and animals to spread across similar climates; its domesticable animals allowed accumulation of food, population density, and eventually technology. Geography explains most of history.</p>
+    </div>
+  </div>
+
+  <!-- WORLD REGIONS -->
+  <div class="section-title">
+    <h2>World Regions: Click to Explore</h2>
+    <p>Each region has its own story — geography, economy, culture, and key facts worth knowing.</p>
+  </div>
+
+  <div class="map-container">
+    <div class="map-header">
+      <h3 style="color:var(--text)">🗺️ World Regions</h3>
+      <p>Select a region to learn more</p>
+    </div>
+
+    <!-- SVG World Map Simplified -->
+    <div style="padding:1.5rem;background:#f0fdf4;text-align:center">
+      <svg viewBox="0 0 900 450" style="width:100%;max-width:900px;height:auto;border-radius:0.5rem" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ocean background -->
+        <rect width="900" height="450" fill="#cce8f4" rx="8"/>
+        <!-- Grid lines (latitude/longitude) -->
+        <line x1="0" y1="225" x2="900" y2="225" stroke="#a8d8ea" stroke-width="0.5" stroke-dasharray="5,5"/>
+        <line x1="450" y1="0" x2="450" y2="450" stroke="#a8d8ea" stroke-width="0.5" stroke-dasharray="5,5"/>
+
+        <!-- North America -->
+        <path d="M 60 60 L 200 50 L 230 80 L 220 130 L 200 160 L 170 180 L 150 200 L 120 230 L 100 250 L 80 240 L 60 200 L 50 150 L 60 100 Z"
+              fill="#4ade80" stroke="white" stroke-width="1.5" class="map-region" data-region="north-america" style="cursor:pointer;transition:fill 0.2s" opacity="0.85"/>
+        <text x="130" y="150" text-anchor="middle" fill="#166534" font-size="11" font-weight="700" pointer-events="none">NORTH</text>
+        <text x="130" y="163" text-anchor="middle" fill="#166534" font-size="11" font-weight="700" pointer-events="none">AMERICA</text>
+
+        <!-- South America -->
+        <path d="M 150 260 L 190 250 L 220 270 L 240 310 L 240 360 L 220 400 L 190 420 L 170 410 L 150 380 L 130 340 L 130 290 Z"
+              fill="#86efac" stroke="white" stroke-width="1.5" class="map-region" data-region="south-america" style="cursor:pointer;transition:fill 0.2s" opacity="0.85"/>
+        <text x="182" y="340" text-anchor="middle" fill="#166534" font-size="10" font-weight="700" pointer-events="none">SOUTH</text>
+        <text x="182" y="353" text-anchor="middle" fill="#166534" font-size="10" font-weight="700" pointer-events="none">AMERICA</text>
+
+        <!-- Europe -->
+        <path d="M 400 50 L 460 45 L 490 60 L 500 90 L 480 110 L 460 120 L 430 115 L 410 100 L 400 80 Z"
+              fill="#60a5fa" stroke="white" stroke-width="1.5" class="map-region" data-region="europe" style="cursor:pointer;transition:fill 0.2s" opacity="0.85"/>
+        <text x="450" y="88" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700" pointer-events="none">EUROPE</text>
+
+        <!-- Africa -->
+        <path d="M 400 160 L 440 150 L 480 160 L 510 190 L 520 240 L 520 290 L 510 340 L 490 380 L 465 395 L 440 390 L 415 370 L 400 340 L 385 290 L 385 230 L 390 190 Z"
+              fill="#fbbf24" stroke="white" stroke-width="1.5" class="map-region" data-region="africa" style="cursor:pointer;transition:fill 0.2s" opacity="0.85"/>
+        <text x="452" y="278" text-anchor="middle" fill="#78350f" font-size="11" font-weight="700" pointer-events="none">AFRICA</text>
+
+        <!-- Middle East / West Asia -->
+        <path d="M 500 110 L 560 100 L 590 120 L 600 150 L 580 170 L 550 175 L 510 165 L 490 145 Z"
+              fill="#fb923c" stroke="white" stroke-width="1.5" class="map-region" data-region="middle-east" style="cursor:pointer;transition:fill 0.2s" opacity="0.85"/>
+        <text x="545" y="142" text-anchor="middle" fill="#7c2d12" font-size="9" font-weight="700" pointer-events="none">MIDDLE</text>
+        <text x="545" y="153" text-anchor="middle" fill="#7c2d12" font-size="9" font-weight="700" pointer-events="none">EAST</text>
+
+        <!-- Russia / Central Asia -->
+        <path d="M 470 30 L 700 20 L 720 50 L 700 80 L 660 95 L 620 90 L 580 80 L 540 70 L 500 60 L 470 50 Z"
+              fill="#c4b5fd" stroke="white" stroke-width="1.5" class="map-region" data-region="russia" style="cursor:pointer;transition:fill 0.2s" opacity="0.85"/>
+        <text x="595" y="60" text-anchor="middle" fill="#4c1d95" font-size="11" font-weight="700" pointer-events="none">RUSSIA</text>
+
+        <!-- South & Southeast Asia -->
+        <path d="M 590 140 L 660 130 L 710 150 L 730 190 L 720 230 L 700 250 L 670 255 L 640 240 L 610 210 L 590 180 Z"
+              fill="#34d399" stroke="white" stroke-width="1.5" class="map-region" data-region="south-asia" style="cursor:pointer;transition:fill 0.2s" opacity="0.85"/>
+        <text x="660" y="200" text-anchor="middle" fill="#064e3b" font-size="9" font-weight="700" pointer-events="none">SOUTH/SE</text>
+        <text x="660" y="211" text-anchor="middle" fill="#064e3b" font-size="9" font-weight="700" pointer-events="none">ASIA</text>
+
+        <!-- East Asia (China, Japan, Korea) -->
+        <path d="M 680 80 L 760 70 L 800 90 L 810 130 L 790 160 L 760 165 L 720 155 L 695 130 L 680 105 Z"
+              fill="#f87171" stroke="white" stroke-width="1.5" class="map-region" data-region="east-asia" style="cursor:pointer;transition:fill 0.2s" opacity="0.85"/>
+        <text x="745" y="120" text-anchor="middle" fill="#7f1d1d" font-size="10" font-weight="700" pointer-events="none">EAST</text>
+        <text x="745" y="132" text-anchor="middle" fill="#7f1d1d" font-size="10" font-weight="700" pointer-events="none">ASIA</text>
+
+        <!-- Australia / Oceania -->
+        <path d="M 720 290 L 800 270 L 840 290 L 855 330 L 840 370 L 800 390 L 760 385 L 730 360 L 715 320 Z"
+              fill="#a78bfa" stroke="white" stroke-width="1.5" class="map-region" data-region="oceania" style="cursor:pointer;transition:fill 0.2s" opacity="0.85"/>
+        <text x="785" y="335" text-anchor="middle" fill="#4c1d95" font-size="10" font-weight="700" pointer-events="none">OCEANIA</text>
+
+        <!-- Legend -->
+        <text x="20" y="420" fill="#64748b" font-size="10">Click a region to learn more ↑</text>
+      </svg>
+    </div>
+
+    <div class="region-grid">
+      <div class="region-card" data-region="north-america">
+        <h4>🌎 North America</h4>
+        <p>23 countries · 580M people</p>
+      </div>
+      <div class="region-card" data-region="south-america">
+        <h4>🌎 South America</h4>
+        <p>12 countries · 430M people</p>
+      </div>
+      <div class="region-card" data-region="europe">
+        <h4>🌍 Europe</h4>
+        <p>44 countries · 750M people</p>
+      </div>
+      <div class="region-card" data-region="africa">
+        <h4>🌍 Africa</h4>
+        <p>54 countries · 1.4B people</p>
+      </div>
+      <div class="region-card" data-region="middle-east">
+        <h4>🌏 Middle East</h4>
+        <p>17 countries · 400M people</p>
+      </div>
+      <div class="region-card" data-region="russia">
+        <h4>🌏 Russia & C. Asia</h4>
+        <p>Largest country on Earth · 6 time zones</p>
+      </div>
+      <div class="region-card" data-region="south-asia">
+        <h4>🌏 South & SE Asia</h4>
+        <p>25+ countries · 2.5B people</p>
+      </div>
+      <div class="region-card" data-region="east-asia">
+        <h4>🌏 East Asia</h4>
+        <p>China, Japan, Korea · 1.7B people</p>
+      </div>
+      <div class="region-card" data-region="oceania">
+        <h4>🌏 Oceania</h4>
+        <p>14 countries · Pacific nations · 44M people</p>
+      </div>
+    </div>
+
+    <!-- Region Details -->
+    <div id="region-north-america" class="region-detail">
+      <h3>🌎 North America</h3>
+      <div class="info-grid" style="margin-top:1rem">
+        <div class="info-block"><h4>Key Countries</h4><p>USA (largest economy), Canada (2nd largest by area), Mexico (emerging economy), Caribbean islands.</p></div>
+        <div class="info-block"><h4>Geography</h4><p>Rocky Mountains (west), Great Plains (center), Appalachians (east). Mississippi River system — the backbone of early US commerce.</p></div>
+        <div class="info-block"><h4>Why Cities Are Where They Are</h4><p>New York: natural harbor at Hudson River mouth. Chicago: Lake Michigan + railroad hub. Los Angeles: Pacific Coast + agriculture. Geography always explains location.</p></div>
+        <div class="info-block"><h4>Key Facts</h4><p>USA has the world's largest economy ($26T GDP). Canada is geographically 2nd largest country. The US-Mexico border is the world's most crossed border (~350M crossings/year).</p></div>
+      </div>
+    </div>
+
+    <div id="region-south-america" class="region-detail">
+      <h3>🌎 South America</h3>
+      <div class="info-grid" style="margin-top:1rem">
+        <div class="info-block"><h4>Key Countries</h4><p>Brazil (largest, 50% of continent's land), Argentina, Colombia, Chile, Peru. Most speak Portuguese (Brazil) or Spanish.</p></div>
+        <div class="info-block"><h4>Amazon Rainforest</h4><p>60% in Brazil. 10% of all species on Earth. Produces 20% of the world's oxygen. Often called "the lungs of the Earth" — though technically oceanic phytoplankton produce more O₂.</p></div>
+        <div class="info-block"><h4>Andes Mountains</h4><p>Longest mountain range on Earth (7,000 km). Created by the Pacific tectonic plate sliding under South America. Home to the Inca civilization — altitude gave them natural defense.</p></div>
+        <div class="info-block"><h4>Resource Wealth</h4><p>South America has vast oil (Venezuela), copper (Chile — 25% of world's supply), iron ore (Brazil), soybeans (Brazil/Argentina). Yet most countries remain middle-income — a study in how resources alone don't guarantee prosperity.</p></div>
+      </div>
+    </div>
+
+    <div id="region-europe" class="region-detail">
+      <h3>🌍 Europe</h3>
+      <div class="info-grid" style="margin-top:1rem">
+        <div class="info-block"><h4>Why Europe Got Rich First</h4><p>Mediterranean climate for agriculture, navigable rivers (Rhine, Danube, Thames), natural harbors, and proximity to the Middle East's early civilizations. Trade routes + competition between small states drove innovation.</p></div>
+        <div class="info-block"><h4>European Union</h4><p>27 countries sharing a single market, most sharing a currency (Euro). Created after WWII to make war between member states economically unthinkable. Has largely succeeded — no wars between member states since 1945.</p></div>
+        <div class="info-block"><h4>Key Geographic Features</h4><p>Alps divide northern and southern Europe. Scandinavia shaped by glaciers — fjords, flat Finland. The Rhine valley was Europe's trade highway for millennia.</p></div>
+        <div class="info-block"><h4>Must-Know Facts</h4><p>Vatican City is the world's smallest country (44 hectares). Russia is in both Europe and Asia. The Caucasus mountains mark Europe's eastern boundary. Europe has 24 official EU languages.</p></div>
+      </div>
+    </div>
+
+    <div id="region-africa" class="region-detail">
+      <h3>🌍 Africa</h3>
+      <div class="info-grid" style="margin-top:1rem">
+        <div class="info-block"><h4>Most Diverse Continent</h4><p>54 countries, 2,000+ languages, 1.4 billion people. Contains every climate zone: Sahara (world's largest hot desert), tropical rainforests (Congo), savannahs, Mediterranean coasts.</p></div>
+        <div class="info-block"><h4>Why Africa's Development Lagged</h4><p>Geographic barriers (Sahara, few navigable rivers reaching the coast), colonial extraction of resources and human capital (slave trade: ~12M enslaved people), and colonial borders drawn without regard to ethnic/tribal boundaries — creating instability.</p></div>
+        <div class="info-block"><h4>Natural Wealth</h4><p>Africa has 30% of world's mineral resources, 60% of world's arable land, 10% of world's oil. The Congo holds 70% of world's cobalt (essential for electric vehicle batteries).</p></div>
+        <div class="info-block"><h4>Rising Fast</h4><p>Africa has the world's youngest population (median age: 19). Fastest-growing middle class. Mobile banking penetration exceeds Europe in some countries (M-Pesa in Kenya). The 21st century may be Africa's century.</p></div>
+      </div>
+    </div>
+
+    <div id="region-east-asia" class="region-detail">
+      <h3>🌏 East Asia</h3>
+      <div class="info-grid" style="margin-top:1rem">
+        <div class="info-block"><h4>China</h4><p>1.4B people, 2nd largest economy ($18T GDP), growing at 5-6%/year. Manufacturing hub of the world. Geographically protected by Himalayas (south), Gobi Desert (north), Pacific Ocean (east).</p></div>
+        <div class="info-block"><h4>Japan</h4><p>Island nation of 125M people. 4th largest economy. No natural resources but became a manufacturing and technology powerhouse through education and culture of quality. 73% mountainous — most people live on 27% of land.</p></div>
+        <div class="info-block"><h4>Korea</h4><p>South Korea: one of history's fastest economic transformations — from war-devastated poverty (1950s) to a high-tech powerhouse (Samsung, Hyundai, LG). North Korea: the world's most isolated state.</p></div>
+        <div class="info-block"><h4>Why Rivers Matter</h4><p>Yellow River = birthplace of Chinese civilization. Yangtze = China's economic spine. Rivers provided agriculture, transportation, and trade. The Grand Canal (1,776 km, built 605 AD) connected China's rivers — longest ancient canal in the world.</p></div>
+      </div>
+    </div>
+
+    <div id="region-middle-east" class="region-detail">
+      <h3>🌏 Middle East</h3>
+      <div class="info-grid" style="margin-top:1rem">
+        <div class="info-block"><h4>Why It Matters</h4><p>Sits at the crossroads of Africa, Europe, and Asia. Controlled ancient trade routes. Birthplace of three major religions (Judaism, Christianity, Islam) and several ancient civilizations (Mesopotamia = "cradle of civilization").</p></div>
+        <div class="info-block"><h4>Oil & Geopolitics</h4><p>Region holds ~50% of world's proven oil reserves. Saudi Arabia, UAE, Kuwait, Iraq, Iran. Oil wealth created rapid modernization but also resource dependency. "Dutch disease": oil wealth can crowd out other economic development.</p></div>
+        <div class="info-block"><h4>Key Countries</h4><p>Saudi Arabia (largest, oil giant), Israel/Palestine (ongoing conflict), Iran (78M people, Shia majority), Turkey (straddles Europe & Asia), UAE (Dubai: global financial hub).</p></div>
+        <div class="info-block"><h4>Water Crisis</h4><p>Most arid region on Earth. By 2025, 14 of the 33 most water-stressed countries will be in the Middle East. Water scarcity is a larger long-term geopolitical threat than oil.</p></div>
+      </div>
+    </div>
+
+    <div id="region-russia" class="region-detail">
+      <h3>🌏 Russia & Central Asia</h3>
+      <div class="info-grid" style="margin-top:1rem">
+        <div class="info-block"><h4>Russia: The Giant</h4><p>Largest country on Earth (11% of land). Spans 11 time zones. When it's Monday morning in Kaliningrad (Europe), it's Monday evening in Kamchatka (Pacific). 144M people — smaller than many think.</p></div>
+        <div class="info-block"><h4>Geographic Curse</h4><p>Russia's obsession with securing warm-water ports (which don't freeze) drove much of its history — wars, expansions, and conflicts. The Trans-Siberian Railway (9,288 km) was built to connect and hold the vast territory.</p></div>
+        <div class="info-block"><h4>-Stan Countries</h4><p>Kazakhstan, Uzbekistan, Turkmenistan, Tajikistan, Kyrgyzstan — former Soviet republics. Kazakhstan is the world's 9th largest country but has only 19M people. Rich in oil, gas, and minerals.</p></div>
+        <div class="info-block"><h4>The Silk Road</h4><p>Central Asia was the crossroads of the ancient world — connecting China, India, Persia, and Europe. Cities like Samarkand were cosmopolitan trading hubs 1,500 years ago. The modern Belt and Road Initiative is China rebuilding these connections.</p></div>
+      </div>
+    </div>
+
+    <div id="region-south-asia" class="region-detail">
+      <h3>🌏 South & Southeast Asia</h3>
+      <div class="info-grid" style="margin-top:1rem">
+        <div class="info-block"><h4>India</h4><p>1.4B people — now world's most populous country (surpassed China in 2023). 3rd largest economy by purchasing power. 22 official languages. IT powerhouse; Bangalore = "Silicon Valley of Asia."</p></div>
+        <div class="info-block"><h4>Monsoon System</h4><p>South Asia's agriculture depends entirely on the monsoon — seasonal wind patterns that bring 80% of annual rainfall in 4 months. The word "monsoon" comes from Arabic "mausim" (season). A failed monsoon = famine historically.</p></div>
+        <div class="info-block"><h4>Southeast Asia</h4><p>Vietnam, Thailand, Indonesia (4th most populous country at 270M), Philippines, Singapore (city-state with world's 3rd highest GDP per capita). ASEAN: 10-nation economic bloc of 670M people.</p></div>
+        <div class="info-block"><h4>Indonesia: The Hidden Giant</h4><p>4th most populous nation, 17,000+ islands, 300 ethnic groups, 700+ languages. World's largest Muslim-majority country. Often overlooked but has the world's 7th largest economy by purchasing power.</p></div>
+      </div>
+    </div>
+
+    <div id="region-oceania" class="region-detail">
+      <h3>🌏 Oceania</h3>
+      <div class="info-grid" style="margin-top:1rem">
+        <div class="info-block"><h4>Australia</h4><p>World's 6th largest country but only 26M people. Oldest continuous cultures on Earth (Aboriginal Australians: 65,000+ years). Most population lives on the thin coastal strip — 70% of interior is arid.</p></div>
+        <div class="info-block"><h4>Pacific Islands</h4><p>Melanesia, Micronesia, Polynesia — thousands of islands. First settled by humans 3,500 years ago using only navigation by stars and ocean currents. Polynesian navigation is considered one of history's greatest feats of exploration.</p></div>
+        <div class="info-block"><h4>Climate Vulnerability</h4><p>Pacific Island nations (Kiribati, Tuvalu, Marshall Islands) may disappear underwater within decades due to sea level rise. Kiribati has already begun relocating citizens to Fiji — history's first climate refugees.</p></div>
+        <div class="info-block"><h4>New Zealand</h4><p>5M people, Māori culture, one of the world's most remote nations (3 hours flight from Australia). Known for progressive politics (first country to give women the vote, 1893) and stunning geography (used as Middle-earth in Lord of the Rings films).</p></div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- TIME ZONES -->
+  <div class="section-title">
+    <h2>Time Zones: How They Work</h2>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-block">
+      <h4>🕐 Why 24 Time Zones?</h4>
+      <p>Earth rotates 360° in 24 hours = 15° per hour. 360 ÷ 24 = 15 degrees per time zone. The prime meridian (0°) runs through Greenwich, England — hence GMT/UTC.</p>
+    </div>
+    <div class="info-block">
+      <h4>📅 International Date Line</h4>
+      <p>At 180° longitude (opposite Greenwich). Cross it going east: you go back a day. Going west: you gain a day. That's why you can fly from New Zealand to LA and arrive the previous day (local time).</p>
+    </div>
+    <div class="info-block">
+      <h4>🇨🇳 China's Political Time Zone</h4>
+      <p>China is geographically ~5 time zones wide but uses only one (UTC+8). Western China (Xinjiang) should be UTC+5 — meaning sunrise there happens at 10 AM by the clock in winter. Politics over geography.</p>
+    </div>
+    <div class="info-block">
+      <h4>🇮🇳 India's Half-Hour Zone</h4>
+      <p>India uses UTC+5:30 — a half-hour offset. Several countries use 30 or 45-minute offsets (Nepal: UTC+5:45). Time zones were originally set politically, not purely geographically.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CLIMATE ZONES -->
+  <div class="section-title">
+    <h2>Climate Zones: Why Different Places Feel Different</h2>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-block" style="border-top:3px solid #ef4444">
+      <h4>☀️ Tropical (0°–23.5° N/S)</h4>
+      <p>Hot year-round, distinct wet/dry seasons (not hot/cold seasons). Amazon, Congo, Southeast Asia. Where the sun's rays are most direct — highest solar energy per square meter.</p>
+    </div>
+    <div class="info-block" style="border-top:3px solid #f97316">
+      <h4>🌵 Desert (Arid)</h4>
+      <p>Less than 250mm rainfall/year. Sahara, Arabian Desert, Australian Outback, Atacama. Located around 30°N/S latitude where subtropical high-pressure systems descend and dry air.</p>
+    </div>
+    <div class="info-block" style="border-top:3px solid #22c55e">
+      <h4>🌿 Mediterranean</h4>
+      <p>Hot dry summers, mild wet winters. Only 5 regions on Earth: Mediterranean basin, California, SW Australia, Chile, South Africa's Cape. Ideal for wine grapes.</p>
+    </div>
+    <div class="info-block" style="border-top:3px solid #3b82f6">
+      <h4>🌧️ Temperate</h4>
+      <p>Four distinct seasons. Most of Europe, eastern US, eastern China, Japan. Where most of the world's great civilizations developed — mild enough for agriculture, varied enough to require planning.</p>
+    </div>
+    <div class="info-block" style="border-top:3px solid #6366f1">
+      <h4>🌨️ Continental</h4>
+      <p>Extreme seasons: very hot summers, very cold winters. Central Russia, Canada, American Midwest. Low population relative to size due to harsh winters. Massive agricultural potential.</p>
+    </div>
+    <div class="info-block" style="border-top:3px solid #94a3b8">
+      <h4>❄️ Polar</h4>
+      <p>Year-round cold. Tundra (brief summers, permafrost) and Ice cap (perpetual ice). Arctic and Antarctic. As permafrost thaws due to climate change, it releases methane — accelerating warming.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2025 RealWorld Academy</p>
+      <div style="display:flex;gap:1rem">
+        <a href="science.html" style="color:#94a3b8">← Science</a>
+        <a href="history.html" style="color:#94a3b8">Next: History →</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/nav.js"></script>
+<script>renderNav('geography');</script>
+
+<script>
+// Map region click handlers
+document.querySelectorAll('.map-region').forEach(region => {
+  region.addEventListener('click', function() {
+    const id = this.dataset.region;
+    // Reset all
+    document.querySelectorAll('.map-region').forEach(r => r.setAttribute('opacity', '0.85'));
+    document.querySelectorAll('.region-card').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.region-detail').forEach(d => d.classList.remove('visible'));
+    // Activate
+    this.setAttribute('opacity', '1');
+    document.querySelector(`.region-card[data-region="${id}"]`)?.classList.add('active');
+    document.getElementById(`region-${id}`)?.classList.add('visible');
+    // Scroll to detail
+    document.getElementById(`region-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>

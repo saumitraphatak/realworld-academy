@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health & Nutrition — RealWorld Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<nav class="nav" id="main-nav"></nav>
+
+<section class="page-hero section">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>›</span><span>Health</span></div>
+    <div class="page-hero-icon" style="background:var(--health-bg)">🥗</div>
+    <h1>Health & Nutrition</h1>
+    <p class="lead">The science of your own body — what to eat, how to sleep, how exercise actually works, and what the evidence says about living well and living long.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+<div class="container">
+
+  <!-- TABS: Nutrition / Sleep / Exercise -->
+  <div class="tabs">
+    <button class="tab-btn active" data-group="health" data-tab="nutrition">🥗 Nutrition</button>
+    <button class="tab-btn" data-group="health" data-tab="sleep">😴 Sleep</button>
+    <button class="tab-btn" data-group="health" data-tab="exercise">🏃 Exercise</button>
+    <button class="tab-btn" data-group="health" data-tab="gut">🦠 Gut Health</button>
+  </div>
+
+  <!-- NUTRITION TAB -->
+  <div class="tab-panel active" data-group="health" data-tab="nutrition">
+    <div class="section-title">
+      <h2>Nutrition: What Your Body Actually Needs</h2>
+      <p>No fad diets. No supplements. Just the evidence-backed basics that 90% of nutrition science agrees on.</p>
+    </div>
+
+    <div class="callout callout-info" style="margin-bottom:2rem">
+      <span class="callout-icon">📊</span>
+      <div>
+        <h4>The Simple Truth: Ultra-Processed Food Is the Problem</h4>
+        <p>A 2019 NIH randomized controlled trial found that people given ultra-processed food diets spontaneously ate 500 more calories per day and gained 2 lbs. Those given unprocessed diets lost weight — eating the same macros. The processing itself — not the macros — appears to drive overconsumption. Eat real food. Mostly plants. Not too much. (Michael Pollan's 7-word advice still holds.)</p>
+      </div>
+    </div>
+
+    <div class="section-title"><h3>The Macronutrients</h3></div>
+
+    <div class="nutrient-grid">
+      <div class="nutrient-card">
+        <div class="nutrient-top" style="background:var(--sci-bg)">
+          <div class="nutrient-icon">🍞</div>
+          <div>
+            <div class="nutrient-name">Carbohydrates</div>
+            <div class="nutrient-role">4 calories per gram · Primary fuel</div>
+          </div>
+        </div>
+        <div class="nutrient-body">
+          <p>Your brain runs almost exclusively on glucose (from carbs). Not all carbs are equal: complex carbs (whole grains, vegetables, legumes) digest slowly, causing gentle blood sugar rises. Simple carbs (sugar, white flour) spike blood sugar and crash it — causing hunger cycles.</p>
+          <div class="nutrient-sources">
+            <span>✅ Brown rice</span><span>✅ Oats</span><span>✅ Sweet potato</span><span>✅ Lentils</span><span>⚠️ White bread</span><span>❌ Sugary drinks</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nutrient-card">
+        <div class="nutrient-top" style="background:#fef3c7">
+          <div class="nutrient-icon">🥩</div>
+          <div>
+            <div class="nutrient-name">Protein</div>
+            <div class="nutrient-role">4 calories per gram · Building block</div>
+          </div>
+        </div>
+        <div class="nutrient-body">
+          <p>Essential for muscle repair, enzyme production, hormone synthesis, and immune function. Most adults need ~0.8g per kg of body weight (athletes: 1.2–2.0g/kg). Protein is the most satiating macronutrient — high-protein meals keep you fuller longer, reducing overall calorie intake.</p>
+          <div class="nutrient-sources">
+            <span>✅ Eggs</span><span>✅ Chicken</span><span>✅ Fish</span><span>✅ Legumes</span><span>✅ Tofu</span><span>✅ Greek yogurt</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nutrient-card">
+        <div class="nutrient-top" style="background:#fdf4ff">
+          <div class="nutrient-icon">🥑</div>
+          <div>
+            <div class="nutrient-name">Fats</div>
+            <div class="nutrient-role">9 calories per gram · Essential functions</div>
+          </div>
+        </div>
+        <div class="nutrient-body">
+          <p>Fat was demonized from the 1970s–1990s (wrongly). Fat is essential for hormone production, brain function (60% of brain is fat), vitamin absorption (A, D, E, K), and cell membrane structure. Unsaturated fats (olive oil, nuts, avocado) are beneficial. Trans fats (partially hydrogenated oils) are genuinely harmful.</p>
+          <div class="nutrient-sources">
+            <span>✅ Olive oil</span><span>✅ Avocado</span><span>✅ Nuts</span><span>✅ Fatty fish</span><span>❌ Trans fats</span><span>⚠️ Processed vegetable oils</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="info-grid">
+      <div class="info-block">
+        <h4>🍬 Sugar: The Modern Villain</h4>
+        <p>Average American consumes 17 teaspoons of added sugar per day (WHO recommends max 6). Excess sugar spikes insulin, promotes fat storage, drives inflammation, and is strongly linked to type 2 diabetes, obesity, and cardiovascular disease. Liquid sugar (soda, juice) is particularly harmful — doesn't trigger fullness signals.</p>
+      </div>
+      <div class="info-block">
+        <h4>💧 Hydration</h4>
+        <p>Your kidneys need minimum ~1L of water daily just to function. Mild dehydration (1–2% of body weight) reduces cognitive performance by 10–20%. Coffee and tea count toward hydration. Urine color is your best indicator: pale yellow = good, dark yellow = drink more.</p>
+      </div>
+      <div class="info-block">
+        <h4>🌿 Fiber: The Underrated Hero</h4>
+        <p>Most people get 10–15g of fiber daily; recommended is 25–38g. Fiber feeds gut bacteria, slows glucose absorption, lowers cholesterol, and is the strongest dietary predictor of longevity in studies. Source: vegetables, legumes, whole grains, fruits.</p>
+      </div>
+      <div class="info-block">
+        <h4>🐟 Omega-3s</h4>
+        <p>Essential fatty acids your body can't make — you must eat them. Found in fatty fish (salmon, mackerel, sardines), walnuts, and flaxseed. Linked to reduced inflammation, improved heart health, brain function, and mood. Most Westerners are deficient.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-tip" style="margin-top:1.5rem">
+      <span class="callout-icon">🍽️</span>
+      <div>
+        <h4>The Plate Method (Simple, Effective)</h4>
+        <p>Half your plate: vegetables and fruits. One quarter: protein. One quarter: whole grains. This simple framework, without calorie counting, aligns with virtually every healthy dietary pattern studied (Mediterranean, Japanese, Nordic).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLEEP TAB -->
+  <div class="tab-panel" data-group="health" data-tab="sleep">
+    <div class="section-title">
+      <h2>Sleep: The Most Underrated Health Behavior</h2>
+      <p>Matthew Walker's "Why We Sleep" called sleep "the single most effective thing we can do to reset our brain and body health each day." The science backs this up completely.</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--meditate)">40%</div>
+        <div class="stat-label">reduced decision-making quality after one bad night</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--meditate)">3x</div>
+        <div class="stat-label">higher risk of catching cold with under 7 hours sleep</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--meditate)">70%</div>
+        <div class="stat-label">of immune cells produced during sleep</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--meditate)">7–9h</div>
+        <div class="stat-label">adults need every night (non-negotiable)</div>
+      </div>
+    </div>
+
+    <div class="topics" style="margin-top:2rem">
+      <div class="topic-card">
+        <div class="topic-header">
+          <div class="topic-header-left">
+            <div class="topic-num" style="background:var(--med-bg);color:var(--meditate)">1</div>
+            <div><h3>Sleep Cycles: What Happens While You're Unconscious</h3>
+            <p>Your brain is incredibly active during sleep — doing things impossible while awake.</p></div>
+          </div>
+          <span class="topic-chevron">▾</span>
+        </div>
+        <div class="topic-body">
+          <div class="topic-content">
+            <p>Sleep occurs in 90-minute cycles, each containing stages:</p>
+            <div class="info-grid" style="margin-top:1rem">
+              <div class="info-block">
+                <h4>💤 N1 & N2 (Light Sleep)</h4>
+                <p>Transition to sleep. Body temperature drops, heart rate slows. Sleep spindles (bursts of brain activity) in N2 are linked to motor learning — why you remember new skills better after sleep.</p>
+              </div>
+              <div class="info-block">
+                <h4>🧠 N3 (Deep Sleep / Slow Wave)</h4>
+                <p>Most restorative stage. Growth hormone released. Glymphatic system flushes brain of toxic waste including amyloid plaques linked to Alzheimer's. Memory consolidation from hippocampus to cortex. Dominates early-night sleep.</p>
+              </div>
+              <div class="info-block">
+                <h4>🎭 REM (Rapid Eye Movement)</h4>
+                <p>Dream stage. Brain nearly as active as waking. Emotional memory processing — REM strips emotional charge from difficult memories while preserving the information. Dominates late-night/morning sleep. Cutting sleep short eliminates REM disproportionately.</p>
+              </div>
+            </div>
+            <div class="callout callout-warn" style="margin-top:1.5rem">
+              <span class="callout-icon">⚠️</span>
+              <div>
+                <h4>Alcohol & sleep: the truth</h4>
+                <p>Alcohol helps you fall asleep but <strong>destroys sleep quality</strong>. It sedates you (different from natural sleep), dramatically suppresses REM sleep, and fragments sleep in the second half of the night. Even moderate alcohol before bed reduces sleep quality by 24%.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-header">
+          <div class="topic-header-left">
+            <div class="topic-num" style="background:var(--med-bg);color:var(--meditate)">2</div>
+            <div><h3>Sleep Hygiene: Evidence-Based Habits</h3>
+            <p>What actually works, what doesn't, and why.</p></div>
+          </div>
+          <span class="topic-chevron">▾</span>
+        </div>
+        <div class="topic-body">
+          <div class="topic-content">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num" style="background:var(--med-bg);color:var(--meditate)">✓</div>
+                <div class="step-content"><h4>Consistent sleep schedule</h4><p>Go to bed and wake up at the same time daily — including weekends. Your circadian rhythm is a biological clock; irregular schedules cause "social jetlag" with measurable health effects.</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num" style="background:var(--med-bg);color:var(--meditate)">✓</div>
+                <div class="step-content"><h4>Cool bedroom (65–68°F / 18–20°C)</h4><p>Your body must lower core temperature by ~2°F to initiate sleep. A cool room helps. Hot baths before bed paradoxically help by pulling heat to the skin surface and cooling the core.</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num" style="background:var(--med-bg);color:var(--meditate)">✓</div>
+                <div class="step-content"><h4>No screens for 1 hour before bed</h4><p>Blue light from screens suppresses melatonin by 50% for 3 hours. Your brain interprets it as daylight and delays sleep onset. Night mode/orange glasses help but don't eliminate the problem.</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num" style="background:var(--med-bg);color:var(--meditate)">✓</div>
+                <div class="step-content"><h4>Morning sunlight within 30 minutes of waking</h4><p>Sets your circadian clock. Natural light (even cloudy) is 10–50x more powerful than indoor lighting for calibrating your internal clock. Links morning waking to evening sleepiness reliably.</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num" style="background:var(--med-bg);color:var(--meditate)">✓</div>
+                <div class="step-content"><h4>Cut caffeine after 2 PM</h4><p>Caffeine has a ~6-hour half-life. A coffee at 3 PM = half a coffee's worth of stimulation at 9 PM. Caffeine blocks adenosine (the brain's sleep pressure signal) — so you feel less sleepy but adenosine keeps building. When caffeine wears off: you crash hard.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE TAB -->
+  <div class="tab-panel" data-group="health" data-tab="exercise">
+    <div class="section-title">
+      <h2>Exercise: How It Actually Works</h2>
+      <p>Exercise is medicine. 150 minutes of moderate activity per week reduces all-cause mortality by 35% — more than any drug ever tested.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-block" style="border-top:3px solid var(--health)">
+        <h4>🏃 Aerobic / Cardio</h4>
+        <p>Activities: running, cycling, swimming, brisk walking. Benefits: heart efficiency (larger stroke volume), lung capacity, mitochondria density, BDNF production (brain-derived neurotrophic factor — literally grows new brain cells). Target: 150 min/week moderate or 75 min/week vigorous.</p>
+      </div>
+      <div class="info-block" style="border-top:3px solid var(--health)">
+        <h4>💪 Resistance / Strength Training</h4>
+        <p>Activities: weights, bodyweight exercises, resistance bands. Benefits: muscle mass (which burns 3x more calories than fat at rest), bone density, insulin sensitivity, posture, injury prevention, and hormonal health. Recommended: 2–3 sessions per week. Most important form of exercise as you age (sarcopenia = age-related muscle loss).</p>
+      </div>
+      <div class="info-block" style="border-top:3px solid var(--health)">
+        <h4>🤸 Flexibility & Mobility</h4>
+        <p>Activities: yoga, stretching, Pilates. Benefits: range of motion, injury prevention, posture. Often neglected. Static stretching after exercise (not before — before, use dynamic warmup). Tight hip flexors from sitting are linked to back pain in desk workers.</p>
+      </div>
+      <div class="info-block" style="border-top:3px solid var(--health)">
+        <h4>🧠 Exercise & Mental Health</h4>
+        <p>A meta-analysis of 49 studies found exercise as effective as antidepressants for mild-to-moderate depression. Mechanism: aerobic exercise releases BDNF (grows hippocampus), endorphins, serotonin, and dopamine. 30 minutes of moderate exercise reduces cortisol (stress hormone) for hours afterward.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-fact" style="margin-top:1.5rem">
+      <span class="callout-icon">🔥</span>
+      <div>
+        <h4>EPOC: The Afterburn Effect</h4>
+        <p>After intense exercise, your body burns extra calories for up to 24–48 hours (excess post-exercise oxygen consumption). High-intensity interval training (HIIT) produces the strongest EPOC — 20 minutes of HIIT can burn calories equivalent to 40 minutes of steady cardio when total effect is counted.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-tip" style="margin-top:1rem">
+      <span class="callout-icon">🪑</span>
+      <div>
+        <h4>Sitting is the new smoking — sort of</h4>
+        <p>Prolonged sitting (8+ hours/day) is independently associated with increased mortality risk even in people who exercise regularly. Standing desks, walking meetings, and breaks every 30–45 minutes partially offset this. The goal: reduce continuous sitting, not just total sitting.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUT HEALTH TAB -->
+  <div class="tab-panel" data-group="health" data-tab="gut">
+    <div class="section-title">
+      <h2>The Gut Microbiome: Your Second Brain</h2>
+      <p>38 trillion bacteria live in your gut — outnumbering your own cells. They're not passengers: they shape your immune system, mood, metabolism, and more.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-block">
+        <h4>🔗 The Gut-Brain Axis</h4>
+        <p>Your gut and brain are connected via the vagus nerve. 90% of serotonin (the "happiness" neurotransmitter) is produced in your gut, not your brain. Gut bacteria influence serotonin production — explaining the emerging link between gut health and depression/anxiety.</p>
+      </div>
+      <div class="info-block">
+        <h4>🛡️ Immune System Connection</h4>
+        <p>70% of your immune system lives in your gut (gut-associated lymphoid tissue). A healthy microbiome teaches your immune system to distinguish friend from foe, pathogens from food. Dysbiosis (imbalanced microbiome) is linked to autoimmune diseases, allergies, and inflammatory conditions.</p>
+      </div>
+      <div class="info-block">
+        <h4>🌱 Feeding Your Bacteria</h4>
+        <p>Prebiotic foods (what bacteria eat): garlic, onion, leeks, asparagus, bananas, oats, apple. Probiotic foods (bacteria themselves): yogurt, kefir, kimchi, sauerkraut, miso, tempeh. Diversity of plant foods = diversity of bacteria = healthier microbiome. Aim for 30+ different plant foods per week.</p>
+      </div>
+      <div class="info-block">
+        <h4>⚠️ What Harms the Microbiome</h4>
+        <p>Antibiotics (necessary when needed, but wipe out beneficial bacteria too — take probiotics during/after courses). Ultra-processed foods. Chronic stress. Lack of sleep. Artificial sweeteners (emerging evidence of microbiome disruption). Low-fiber diets.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2025 RealWorld Academy</p>
+      <div style="display:flex;gap:1rem">
+        <a href="history.html" style="color:#94a3b8">← History</a>
+        <a href="meditation.html" style="color:#94a3b8">Next: Meditation →</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/nav.js"></script>
+<script>renderNav('health');</script>
+</body>
+</html>

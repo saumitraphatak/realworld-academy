@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meditation & Mind — RealWorld Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    @keyframes breathe-expand { from { transform: scale(1); } to { transform: scale(1.45); } }
+    @keyframes breathe-shrink { from { transform: scale(1.45); } to { transform: scale(1); } }
+    .breath-ring {
+      width: 220px; height: 220px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(109,40,217,0.2) 0%, rgba(109,40,217,0.05) 60%, transparent 100%);
+      border: 3px solid rgba(109,40,217,0.4);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 600; color: var(--meditate);
+      margin: 2rem auto; position: relative; transition: transform 0.1s;
+      box-shadow: 0 0 0 0 rgba(109,40,217,0.3);
+    }
+    .breath-ring .phase-text { font-size: 1.125rem; font-weight: 700; }
+    .breath-ring .count-text { font-size: 2rem; font-weight: 800; color: var(--meditate); }
+    .breath-ring.expanding { animation: breathe-expand 4s ease-in-out forwards; }
+    .breath-ring.holding { transform: scale(1.45); }
+    .breath-ring.shrinking { animation: breathe-shrink 4s ease-in-out forwards; }
+    .breath-ring.exhale-hold { transform: scale(1); }
+    .timer-controls { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .technique-card {
+      background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
+      padding: 1.5rem; cursor: pointer; transition: all 0.2s; border: 2px solid transparent;
+    }
+    .technique-card:hover, .technique-card.selected { border-color: var(--meditate); }
+    .technique-card.selected { background: var(--med-bg); }
+    .technique-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  </style>
+</head>
+<body>
+
+<nav class="nav" id="main-nav"></nav>
+
+<section class="page-hero section">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>›</span><span>Meditation</span></div>
+    <div class="page-hero-icon" style="background:var(--med-bg)">🧘</div>
+    <h1>Meditation & Mindfulness</h1>
+    <p class="lead">Not woo-woo — neuroscience-backed techniques that measurably reduce stress, improve focus, and change the physical structure of your brain. With an interactive breathing exercise.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+<div class="container">
+
+  <!-- SCIENCE FIRST -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--meditate)">8wks</div>
+      <div class="stat-label">of daily meditation grows the prefrontal cortex</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--meditate)">23%</div>
+      <div class="stat-label">reduction in cortisol (stress hormone) after MBSR</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--meditate)">10min</div>
+      <div class="stat-label">daily minimum for measurable cognitive benefits</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--meditate)">50%</div>
+      <div class="stat-label">reduction in mind-wandering after mindfulness training</div>
+    </div>
+  </div>
+
+  <div class="callout callout-info" style="margin:2rem 0">
+    <span class="callout-icon">🔬</span>
+    <div>
+      <h4>What the neuroscience actually shows</h4>
+      <p>fMRI studies show that 8 weeks of Mindfulness-Based Stress Reduction (MBSR): <strong>(1)</strong> Reduces amygdala size and reactivity (the brain's alarm system). <strong>(2)</strong> Thickens the prefrontal cortex (executive function, decision-making). <strong>(3)</strong> Reduces default mode network activity (mind-wandering / rumination). <strong>(4)</strong> Increases insula activity (interoception / body awareness). These aren't self-reported benefits — they're structural brain changes visible on scans.</p>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE BREATHING EXERCISE -->
+  <div class="card" style="margin-bottom:3rem">
+    <div class="card-header">
+      <h2 style="color:var(--text)">🌬️ Interactive Breathing Exercise</h2>
+      <p>Choose a technique and follow the animation. Start with just 1–2 minutes.</p>
+    </div>
+    <div class="card-body">
+      <!-- Technique Selector -->
+      <div class="technique-grid">
+        <div class="technique-card selected" onclick="selectTechnique(this, '4-7-8')" data-technique="4-7-8">
+          <h4>4-7-8 Breathing</h4>
+          <p style="font-size:0.85rem;margin-top:0.5rem">Inhale 4s · Hold 7s · Exhale 8s</p>
+          <p style="font-size:0.8rem;color:var(--meditate);margin-top:0.5rem;font-weight:600">Best for: Sleep, anxiety relief</p>
+        </div>
+        <div class="technique-card" onclick="selectTechnique(this, 'box')" data-technique="box">
+          <h4>Box Breathing</h4>
+          <p style="font-size:0.85rem;margin-top:0.5rem">Inhale 4s · Hold 4s · Exhale 4s · Hold 4s</p>
+          <p style="font-size:0.8rem;color:var(--meditate);margin-top:0.5rem;font-weight:600">Best for: Focus, Navy SEALs use this</p>
+        </div>
+        <div class="technique-card" onclick="selectTechnique(this, 'calm')" data-technique="calm">
+          <h4>Calm Breath</h4>
+          <p style="font-size:0.85rem;margin-top:0.5rem">Inhale 5s · Exhale 5s</p>
+          <p style="font-size:0.8rem;color:var(--meditate);margin-top:0.5rem;font-weight:600">Best for: Beginners, general calm</p>
+        </div>
+        <div class="technique-card" onclick="selectTechnique(this, 'wim-hof')" data-technique="wim-hof">
+          <h4>Physiological Sigh</h4>
+          <p style="font-size:0.85rem;margin-top:0.5rem">Double inhale + long exhale</p>
+          <p style="font-size:0.8rem;color:var(--meditate);margin-top:0.5rem;font-weight:600">Best for: Fastest stress relief</p>
+        </div>
+      </div>
+
+      <!-- Breathing Circle -->
+      <div class="breath-ring" id="breath-circle">
+        <div class="phase-text" id="breath-phase-text">Ready</div>
+        <div class="count-text" id="breath-count-display">—</div>
+      </div>
+
+      <div id="breath-instruction" style="text-align:center;color:var(--text-muted);margin-bottom:1.5rem;font-size:0.9rem">
+        Select a technique and press Start. Breathe through your nose.
+      </div>
+
+      <div class="timer-controls">
+        <button class="btn btn-primary" id="start-btn" onclick="startBreathing()">▶ Start</button>
+        <button class="btn btn-outline" onclick="stopBreathing()">■ Stop</button>
+        <span id="cycle-count" style="align-self:center;color:var(--text-muted);font-size:0.875rem"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDITATION TYPES -->
+  <div class="section-title">
+    <h2>Types of Meditation: Which One Is Right for You?</h2>
+  </div>
+
+  <div class="topics">
+
+    <div class="topic-card">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <div class="topic-num" style="background:var(--med-bg);color:var(--meditate)">1</div>
+          <div><h3>Mindfulness Meditation (MBSR)</h3>
+          <p>The most research-backed form. Developed by Jon Kabat-Zinn at MIT. Now standard in hospitals and therapy worldwide.</p></div>
+        </div>
+        <span class="topic-chevron">▾</span>
+      </div>
+      <div class="topic-body">
+        <div class="topic-content">
+          <p>Mindfulness means paying deliberate, non-judgmental attention to the present moment. The practice involves: choosing an anchor (usually breath), noticing when your mind wanders, and gently returning — repeatedly. Each return is a "mental rep" that builds attentional control over time.</p>
+          <div class="steps" style="margin-top:1.5rem">
+            <div class="step">
+              <div class="step-num" style="background:var(--med-bg);color:var(--meditate)">1</div>
+              <div class="step-content"><h4>Find a comfortable seated position</h4><p>Chair is fine. Cross-legged on floor is fine. Lying down (but you'll likely fall asleep). Spine relatively straight but not rigid.</p></div>
+            </div>
+            <div class="step">
+              <div class="step-num" style="background:var(--med-bg);color:var(--meditate)">2</div>
+              <div class="step-content"><h4>Set a timer for 5–10 minutes</h4><p>Not knowing when it ends is cognitively distracting. Apps: Insight Timer (free), Headspace, Calm. Or just a simple phone timer.</p></div>
+            </div>
+            <div class="step">
+              <div class="step-num" style="background:var(--med-bg);color:var(--meditate)">3</div>
+              <div class="step-content"><h4>Focus on your breath sensation</h4><p>Not the idea of breathing — the physical sensation: air at nostrils, chest or belly rise/fall. Anchor your attention here.</p></div>
+            </div>
+            <div class="step">
+              <div class="step-num" style="background:var(--med-bg);color:var(--meditate)">4</div>
+              <div class="step-content"><h4>When your mind wanders, notice and return</h4><p>This WILL happen constantly — especially at first. That's not failure; that's the practice. Each noticing-and-returning is one mental rep. The wandering is normal. The returning is the training.</p></div>
+            </div>
+          </div>
+          <div class="callout callout-tip" style="margin-top:1.5rem">
+            <span class="callout-icon">💡</span>
+            <div>
+              <h4>The Key Insight</h4>
+              <p>You're not trying to empty your mind or stop thoughts. You're training the ability to notice where your attention is and redirect it intentionally. This skill — metacognition — transfers to every area of life: conversations, work, relationships.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <div class="topic-num" style="background:var(--med-bg);color:var(--meditate)">2</div>
+          <div><h3>Body Scan Meditation</h3>
+          <p>A powerful technique for stress relief, chronic pain, and reconnecting with physical sensations.</p></div>
+        </div>
+        <span class="topic-chevron">▾</span>
+      </div>
+      <div class="topic-body">
+        <div class="topic-content">
+          <p>Systematically move your attention through your body, from feet to head (or reverse), noticing sensations without trying to change them. Used clinically for chronic pain management — it teaches your brain to observe sensation without catastrophizing it.</p>
+          <div class="callout callout-info">
+            <span class="callout-icon">🩺</span>
+            <div>
+              <h4>Used in medical settings</h4>
+              <p>Body scan is a core component of MBSR (Mindfulness-Based Stress Reduction), which is now offered in hundreds of hospitals worldwide for cancer patients, chronic pain, and anxiety disorders. Studies show it reduces perception of pain intensity — not by eliminating it, but by changing the brain's relationship to it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <div class="topic-num" style="background:var(--med-bg);color:var(--meditate)">3</div>
+          <div><h3>Loving-Kindness Meditation (Metta)</h3>
+          <p>Develops compassion and reduces social anxiety. Has some of the most interesting neuroscience behind it.</p></div>
+        </div>
+        <span class="topic-chevron">▾</span>
+      </div>
+      <div class="topic-body">
+        <div class="topic-content">
+          <p>Involves generating feelings of warmth and goodwill toward: yourself, a loved one, a neutral person, a difficult person, all beings. Counterintuitive to Western audiences but has robust research support.</p>
+          <div class="info-grid" style="margin-top:1rem">
+            <div class="info-block">
+              <h4>Research Outcomes</h4>
+              <p>Richard Davidson (University of Wisconsin) showed that expert meditators practicing Metta produce extraordinarily high-amplitude gamma waves in the brain — associated with peak states of awareness and compassion. Even short practices shift brain states measurably.</p>
+            </div>
+            <div class="info-block">
+              <h4>Practical Benefits</h4>
+              <p>Studies show: reduced self-criticism, increased social connection, reduced symptoms of PTSD, improved relationship satisfaction, and reduced implicit bias toward out-groups. The phrase: "May you be happy. May you be healthy. May you be safe. May you live with ease."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <div class="topic-num" style="background:var(--med-bg);color:var(--meditate)">4</div>
+          <div><h3>Transcendental Meditation (TM)</h3>
+          <p>The most famous (and expensive) technique. What makes it different from other forms.</p></div>
+        </div>
+        <span class="topic-chevron">▾</span>
+      </div>
+      <div class="topic-body">
+        <div class="topic-content">
+          <p>TM involves silently repeating a mantra (a specific word or sound) for 20 minutes twice daily. The mantras are given privately by a certified teacher — the technique is trademarked and requires paid instruction (~$1,000).</p>
+          <div class="info-grid" style="margin-top:1rem">
+            <div class="info-block">
+              <h4>What the Research Shows</h4>
+              <p>TM has over 400 peer-reviewed studies. It produces a state of "restful alertness" — low brainwave activity with maintained awareness. Evidence for blood pressure reduction is particularly strong (American Heart Association has acknowledged it).</p>
+            </div>
+            <div class="info-block">
+              <h4>The Honest Assessment</h4>
+              <p>TM works — but most research suggests it's not uniquely better than other meditation styles at similar depth. The $1,000 certification fee funds the Maharishi organization. Free alternatives: any mantra meditation where you choose your own word (e.g., "peace," "one," or "so hum").</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-title">
+    <h2>Getting Started: The Practical Guide</h2>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-block" style="border-top:3px solid var(--meditate)">
+      <h4>🕐 How much is enough?</h4>
+      <p>Studies show benefits from as little as 10 minutes daily. 20 minutes shows stronger effects. What matters most is consistency — 10 minutes every day beats 60 minutes twice a week. The same principle as exercise.</p>
+    </div>
+    <div class="info-block" style="border-top:3px solid var(--meditate)">
+      <h4>⏰ When to meditate</h4>
+      <p>Morning: sets mental tone for the day, willpower is fresh. Just before a stressful event: brings you into the present. Before sleep: use body scan or 4-7-8 breathing. Avoid right after coffee or before an urgent task.</p>
+    </div>
+    <div class="info-block" style="border-top:3px solid var(--meditate)">
+      <h4>📱 Best apps (free options)</h4>
+      <p><strong>Insight Timer</strong>: largest free library of guided meditations (50,000+). <strong>Waking Up (Sam Harris)</strong>: most intellectually rigorous approach. <strong>YouTube</strong>: search "MBSR body scan" or "guided mindfulness." Apps help but aren't required.</p>
+    </div>
+    <div class="info-block" style="border-top:3px solid var(--meditate)">
+      <h4>🤔 "I can't stop thinking"</h4>
+      <p>The #1 reason people say they "can't meditate." But thinking during meditation is not failure — it's the workout. Every time you notice you've wandered and return, that's a successful rep. Expecting a blank mind is like expecting to never drop a weight while weight training.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>© 2025 RealWorld Academy</p>
+      <div style="display:flex;gap:1rem">
+        <a href="health.html" style="color:#94a3b8">← Health</a>
+        <a href="puzzles.html" style="color:#94a3b8">Next: Puzzles →</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/nav.js"></script>
+<script>renderNav('meditation');</script>
+
+<script>
+const techniques = {
+  '4-7-8': {
+    name: '4-7-8 Breathing',
+    phases: [
+      { label: 'Inhale', duration: 4, instruction: 'Breathe in slowly through your nose' },
+      { label: 'Hold', duration: 7, instruction: 'Hold your breath gently' },
+      { label: 'Exhale', duration: 8, instruction: 'Exhale completely through your mouth' }
+    ]
+  },
+  'box': {
+    name: 'Box Breathing',
+    phases: [
+      { label: 'Inhale', duration: 4, instruction: 'Breathe in slowly' },
+      { label: 'Hold', duration: 4, instruction: 'Hold at the top' },
+      { label: 'Exhale', duration: 4, instruction: 'Breathe out slowly' },
+      { label: 'Hold', duration: 4, instruction: 'Hold at the bottom' }
+    ]
+  },
+  'calm': {
+    name: 'Calm Breath',
+    phases: [
+      { label: 'Inhale', duration: 5, instruction: 'Breathe in through your nose' },
+      { label: 'Exhale', duration: 5, instruction: 'Breathe out through your nose or mouth' }
+    ]
+  },
+  'wim-hof': {
+    name: 'Physiological Sigh',
+    phases: [
+      { label: 'Inhale', duration: 3, instruction: 'Breathe in deep through nose' },
+      { label: 'Inhale+', duration: 1, instruction: 'Sniff in a little more air' },
+      { label: 'Exhale', duration: 6, instruction: 'Long, slow exhale through mouth' }
+    ]
+  }
+};
+
+let currentTechnique = '4-7-8';
+let breathInterval = null;
+let phaseIndex = 0;
+let countdown = 0;
+let cycleCount = 0;
+let isRunning = false;
+
+function selectTechnique(el, key) {
+  document.querySelectorAll('.technique-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  currentTechnique = key;
+  stopBreathing();
+  document.getElementById('breath-instruction').textContent = `Selected: ${techniques[key].name}. Press Start to begin.`;
+}
+
+function startBreathing() {
+  if (isRunning) return;
+  isRunning = true;
+  phaseIndex = 0;
+  cycleCount = 0;
+  runPhase();
+}
+
+function runPhase() {
+  if (!isRunning) return;
+  const t = techniques[currentTechnique];
+  const phase = t.phases[phaseIndex];
+  countdown = phase.duration;
+
+  const circle = document.getElementById('breath-circle');
+  const phaseText = document.getElementById('breath-phase-text');
+  const countDisplay = document.getElementById('breath-count-display');
+  const instruction = document.getElementById('breath-instruction');
+
+  phaseText.textContent = phase.label;
+  instruction.textContent = phase.instruction;
+
+  // Visual animation
+  circle.className = 'breath-ring';
+  if (phase.label === 'Inhale' || phase.label === 'Inhale+') {
+    circle.style.transition = `transform ${phase.duration}s ease-in`;
+    circle.style.transform = 'scale(1.45)';
+    circle.style.borderColor = 'rgba(109,40,217,0.7)';
+  } else if (phase.label === 'Hold') {
+    circle.style.transition = 'none';
+  } else {
+    circle.style.transition = `transform ${phase.duration}s ease-out`;
+    circle.style.transform = 'scale(1)';
+    circle.style.borderColor = 'rgba(109,40,217,0.3)';
+  }
+
+  let elapsed = 0;
+  clearInterval(breathInterval);
+  breathInterval = setInterval(() => {
+    elapsed++;
+    countDisplay.textContent = phase.duration - elapsed;
+    if (elapsed >= phase.duration) {
+      clearInterval(breathInterval);
+      phaseIndex++;
+      if (phaseIndex >= t.phases.length) {
+        phaseIndex = 0;
+        cycleCount++;
+        document.getElementById('cycle-count').textContent = `Cycles: ${cycleCount}`;
+      }
+      if (isRunning) setTimeout(runPhase, 200);
+    }
+  }, 1000);
+}
+
+function stopBreathing() {
+  isRunning = false;
+  clearInterval(breathInterval);
+  const circle = document.getElementById('breath-circle');
+  circle.style.transform = 'scale(1)';
+  circle.style.transition = 'transform 1s ease';
+  circle.style.borderColor = 'rgba(109,40,217,0.4)';
+  document.getElementById('breath-phase-text').textContent = 'Ready';
+  document.getElementById('breath-count-display').textContent = '—';
+  document.getElementById('cycle-count').textContent = '';
+}
+</script>
+</body>
+</html>
