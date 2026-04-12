@@ -1,0 +1,29 @@
+# RealWorld Academy
+
+> Free, practical education covering the life skills school never taught — finance, psychology, philosophy, science, geography, history, health, meditation, puzzles, books, and home skills.
+
+RealWorld Academy is a pure static website (no login, no account, no cost) by Saumitra Phatak. It covers 11 subject areas with interactive lessons, accordion topic cards, tabbed content, an interactive compound interest calculator (Chart.js), and an inline SVG world map. The tagline is "Everything School Forgot to Teach You."
+
+## Main Pages
+
+- [Home](https://saumitraphatak.github.io/realworld-academy/): Category grid linking to all 11 subject areas, featured lessons, and site introduction
+- [Personal Finance](https://saumitraphatak.github.io/realworld-academy/pages/finance.html): Compound interest with interactive Chart.js calculator, the 50/30/20 budgeting rule, investing basics, taxes, and credit scores
+- [Psychology](https://saumitraphatak.github.io/realworld-academy/pages/psychology.html): Cognitive biases, how memory works, emotional intelligence, and growth vs fixed mindset
+- [Philosophy](https://saumitraphatak.github.io/realworld-academy/pages/philosophy.html): Stoicism for daily life, logical fallacies, ethics frameworks, and critical thinking
+- [Everyday Science](https://saumitraphatak.github.io/realworld-academy/pages/science.html): Newton's laws in daily life, why the sky is blue, how vaccines work, how GPS works, entropy
+- [Geography & World](https://saumitraphatak.github.io/realworld-academy/pages/geography.html): Interactive SVG world map, world regions, climate zones, time zones, geopolitics
+- [History That Matters](https://saumitraphatak.github.io/realworld-academy/pages/history.html): Key world events timeline, historical patterns, civilizations, revolutions
+- [Health & Nutrition](https://saumitraphatak.github.io/realworld-academy/pages/health.html): Tabbed guide covering Nutrition, Sleep science, Exercise physiology, and Gut Health
+- [Meditation & Mind](https://saumitraphatak.github.io/realworld-academy/pages/meditation.html): Interactive breathing timer for 4 techniques, mindfulness neuroscience
+- [Puzzles & Brain Games](https://saumitraphatak.github.io/realworld-academy/pages/puzzles.html): Age-grouped puzzle guide, Rubik's Cube cognitive benefits, chess, Sudoku
+- [Books Worth Reading](https://saumitraphatak.github.io/realworld-academy/pages/books.html): Curated reading list of 40+ books across 7 tab categories
+- [Home Skills](https://saumitraphatak.github.io/realworld-academy/pages/home-skills.html): Plumbing, electrical basics, essential tools, and home maintenance
+
+## Source & Technical
+
+- [GitHub Repository](https://github.com/saumitraphatak/realworld-academy): Full source code (pure static HTML/CSS/JS, no build tools)
+
+## Optional
+
+- [Chart.js CDN](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js): Compound interest chart library (loaded only on finance page)
+- [Google Fonts — Inter](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap): Primary typeface used site-wide

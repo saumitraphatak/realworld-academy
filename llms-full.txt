@@ -1,0 +1,372 @@
+# RealWorld Academy — Full Content Reference
+
+**Live URL:** https://saumitraphatak.github.io/realworld-academy/
+**GitHub:** https://github.com/saumitraphatak/realworld-academy
+**Author:** Saumitra Phatak
+**License:** Open source, free forever
+
+---
+
+## Site Purpose & Audience
+
+RealWorld Academy teaches practical life knowledge that school curricula typically omit. The target audience is anyone who wants to understand compound interest before they turn 40, recognise cognitive biases in their daily decisions, apply Stoic philosophy to modern stress, or fix a leaky tap without calling a plumber.
+
+The site is fully free, requires no account, has no ads, and contains no tracking. Content is written to be memorable and applied, not academic.
+
+---
+
+## Tech Stack
+
+- **HTML/CSS/Vanilla JS only** — no framework, no npm, no build step
+- **Chart.js 4.4.0** via jsDelivr CDN — compound interest chart on finance.html only
+- **Google Fonts: Inter** (weights 400–800) via CDN
+- **Inline SVG world map** on geography.html — no third-party map library
+- **GitHub Pages** hosting — deploys from the `main` branch
+
+---
+
+## Design System
+
+### Color Palette (light theme)
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--bg` | `#f0f4f8` | Page background |
+| `--surface` | `#ffffff` | Cards, panels |
+| `--border` | `#e2e8f0` | Borders, dividers |
+| `--text` | `#0f172a` | Body text |
+| `--text-muted` | `#64748b` | Secondary text |
+| `--primary` | `#4f46e5` | Brand indigo, CTAs |
+
+### Category Accent Colors
+
+| Category | Foreground | Background Token |
+|----------|-----------|-----------------|
+| Finance | `#059669` (emerald) | `--finance-bg: #ecfdf5` |
+| Psychology | `#7c3aed` (violet) | `--psych-bg: #f5f3ff` |
+| Philosophy | `#0891b2` (cyan) | `--phil-bg: #ecfeff` |
+| Science | `#2563eb` (blue) | `--sci-bg: #eff6ff` |
+| Geography | `#16a34a` (green) | `--geo-bg: #f0fdf4` |
+| History | `#b45309` (amber) | `--hist-bg: #fffbeb` |
+| Health | `#dc2626` (red) | `--health-bg: #fef2f2` |
+| Meditation | `#6d28d9` (purple) | `--med-bg: #faf5ff` |
+| Puzzles | `#d97706` (amber) | `--puz-bg: #fffbeb` |
+| Books | `#92400e` (brown) | `--books-bg: #fef3c7` |
+| Home Skills | `#0d9488` (teal) | `--home-bg: #f0fdfa` |
+
+### Typography
+
+- Font: Inter (sans-serif) from Google Fonts
+- `h1`: clamp(2rem, 5vw, 3.5rem), weight 800
+- `h2`: clamp(1.5rem, 3vw, 2.25rem), weight 700
+- `h3`: 1.25rem, weight 600
+- Body line-height: 1.6; paragraph line-height: 1.75
+
+---
+
+## JavaScript Architecture
+
+All JS lives in a single file: `js/nav.js`. There are no modules, no classes, no bundler.
+
+### Functions in nav.js
+
+**`renderNav(activeKey)`**
+- Injects the full nav HTML into `<nav id="main-nav">`
+- The `activeKey` string matches one of the `key` values in `NAV_LINKS`
+- Special case: `activeKey === 'home'` uses `pages/` prefix for all hrefs
+- Called at the bottom of every HTML file after the script tag
+
+**`initAccordions()`**
+- Attaches click listeners to all `.topic-header` elements
+- Single-open accordion: clicking one card closes all others
+- Adds/removes `class="open"` on the parent `.topic-card`
+
+**`initTabs()`**
+- Attaches click listeners to all `.tab-btn` elements
+- Filters by `data-group` so multiple tab groups can coexist on one page
+- Toggles `.active` on matching `.tab-btn` and `.tab-panel` elements
+
+**`initRegions()`**
+- Used exclusively on `geography.html`
+- Clicks on `.region-card[data-region="X"]` reveal `#region-X` detail panels
+- Toggles `.active` on cards and `.visible` on detail panels
+
+All three init functions are called automatically in a `DOMContentLoaded` listener.
+
+---
+
+## Page-by-Page Content Reference
+
+### index.html — Home Page
+
+**URL:** https://saumitraphatak.github.io/realworld-academy/
+
+**Sections:**
+1. **Hero** — "Everything School Forgot to Teach You" with two CTAs: Start Learning and Browse Topics
+2. **Stats row** — 11 categories, 60+ tutorials, 100% practical, 0 useless memorization
+3. **Why this exists callout** — explains the gap between school education and real-world knowledge
+4. **Category grid** — 11 clickable cards, each linking to a subject page with icon, description, and tags
+5. **Quote** — "An investment in knowledge pays the best interest." — Benjamin Franklin
+6. **Featured Lessons** — 6 highlight blocks (compound interest, cognitive biases, sleep, Stoicism, geography, Rubik's Cube)
+7. **Footer** — nav links organised by Learn / Explore / About
+
+**Nav call:** `renderNav('home')`
+
+---
+
+### pages/finance.html — Personal Finance
+
+**URL:** https://saumitraphatak.github.io/realworld-academy/pages/finance.html
+
+**Topics (accordion cards):**
+1. **Compound Interest** — Formula A = P(1 + r/n)^(nt), Rule of 72, interactive Chart.js calculator showing investment growth over time with configurable principal, rate, and years. Real-world examples comparing investing at 22 vs 32.
+2. **The 50/30/20 Budget Rule** — Allocate 50% to needs, 30% to wants, 20% to savings/debt. How to categorise expenses.
+3. **Investing Basics** — Difference between saving and investing, index funds, ETFs, dollar-cost averaging, why stock-picking fails for most people.
+4. **Understanding Taxes** — How income tax brackets actually work (marginal vs effective rate), deductions, W-2 vs 1099, basics of a tax return.
+5. **Credit Scores** — How FICO scores are calculated (payment history 35%, amounts owed 30%, length 15%, mix 10%, new credit 10%), how to build credit from scratch.
+
+**Stats shown:** 78% of Americans live paycheck to paycheck, 7% avg annual stock market return, Rule of 72.
+
+**Interactive:** Chart.js compound interest graph with sliders/inputs for principal, annual contribution, interest rate, and years.
+
+**CDN used:** Chart.js 4.4.0 (this page only).
+
+**Nav call:** `renderNav('finance')`
+
+---
+
+### pages/psychology.html — Psychology
+
+**URL:** https://saumitraphatak.github.io/realworld-academy/pages/psychology.html
+
+**Topics (accordion cards):**
+1. **Cognitive Biases** — Confirmation bias (seeking confirming info), availability heuristic (what's memorable feels more likely), sunk cost fallacy (throwing good money after bad), anchoring, Dunning-Kruger effect, in-group bias.
+2. **How Memory Works** — Short-term vs long-term memory, encoding, the forgetting curve (Ebbinghaus), spaced repetition, chunking, the method of loci.
+3. **Emotional Intelligence (EQ)** — Goleman's 5 components: self-awareness, self-regulation, motivation, empathy, social skills. Why EQ often predicts success better than IQ.
+4. **Growth vs Fixed Mindset** — Carol Dweck's research. Fixed mindset: abilities are innate. Growth mindset: abilities can be developed. How to shift your self-talk.
+
+**Nav call:** `renderNav('psychology')`
+
+---
+
+### pages/philosophy.html — Philosophy
+
+**URL:** https://saumitraphatak.github.io/realworld-academy/pages/philosophy.html
+
+**Topics (accordion cards):**
+1. **Stoicism** — Core principles from Marcus Aurelius, Epictetus, Seneca. Dichotomy of control (what's up to us vs not), memento mori (remembering mortality), negative visualisation, amor fati (love of fate). Daily Stoic practices.
+2. **Logical Fallacies** — Ad hominem (attacking the person), straw man (misrepresenting the argument), false dichotomy (only two options), slippery slope, appeal to authority, circular reasoning, bandwagon fallacy. How to recognise them in debate and media.
+3. **Ethics Frameworks** — Consequentialism (judge actions by outcomes), Deontology (Kant: rules matter regardless of outcome), Virtue Ethics (Aristotle: focus on character), Contractarianism (Rawls: veil of ignorance).
+4. **Better Decision-Making** — Second-order thinking, inversion (think about what to avoid), pre-mortem analysis, mental models from Charlie Munger.
+
+**Nav call:** `renderNav('philosophy')`
+
+---
+
+### pages/science.html — Everyday Science
+
+**URL:** https://saumitraphatak.github.io/realworld-academy/pages/science.html
+
+**Topics (accordion cards):**
+1. **Newton's Three Laws** — Law of Inertia (seat belts), F=ma (why heavy cars brake slower), action-reaction (rocket propulsion, walking). Real-world examples from daily life.
+2. **Why the Sky Is Blue** — Rayleigh scattering: shorter blue wavelengths scatter more than red in the atmosphere. Why sunsets are red/orange. Why Mars has a pinkish sky.
+3. **How Vaccines Work** — Antigens, antibodies, B-cells and T-cells, herd immunity threshold (typically 60–95% depending on disease). mRNA vaccines vs traditional vaccines. Debunking common misconceptions.
+4. **How GPS Works** — Trilateration using 4+ satellites, atomic clocks, relativistic time corrections (GPS would drift 10 km/day without Einstein's corrections), GNSS vs GPS.
+5. **Entropy** — Second law of thermodynamics: why disorder increases, why you can't unscramble an egg, why machines lose energy to heat, why perpetual motion is impossible.
+
+**Nav call:** `renderNav('science')`
+
+---
+
+### pages/geography.html — Geography & World
+
+**URL:** https://saumitraphatak.github.io/realworld-academy/pages/geography.html
+
+**Features:**
+- **Inline SVG world map** — clickable regions highlight and show the corresponding detail panel
+- **Region detail cards** — one for each major world region: Europe, Asia, the Americas, Africa, Oceania/Pacific
+- Each detail panel covers: countries, population, GDP, climate, major rivers/mountains, cultural notes, geopolitical context
+
+**Topics:**
+- Why rivers determine where cities exist
+- How geography explains wealth and poverty (latitude, coastlines, rivers, natural resources)
+- Climate zones (tropical, arid, temperate, continental, polar)
+- Time zones: how they work, UTC offsets, the international date line
+- Geopolitics: why Europe colonised the world (Jared Diamond's thesis), BRICS, NATO
+
+**Interactive:** Clicking a region card (`data-region="europe"`) makes `#region-europe` visible.
+
+**Nav call:** `renderNav('geography')`
+
+---
+
+### pages/history.html — History That Matters
+
+**URL:** https://saumitraphatak.github.io/realworld-academy/pages/history.html
+
+**Content:**
+- Visual timeline of key world events
+- The Printing Press (1440, Gutenberg) — democratisation of knowledge
+- The Scientific Revolution (1543–1687) — Copernicus, Galileo, Newton
+- The French Revolution (1789) — liberty, equality, fraternity; birth of modern democracy
+- Industrial Revolution (1760–1840) — steam power, urbanisation, capitalism
+- World War I (1914–1918) — causes, consequences, redrawing of maps
+- World War II (1939–1945) — causes, Holocaust, atomic bomb, UN founding
+- Cold War (1947–1991) — nuclear standoff, space race, proxy wars
+- Digital Revolution (1970s–present) — internet, computers, AI
+
+**Patterns discussed:**
+- Civilisations rise and fall on predictable cycles (Toynbee, Spengler)
+- Technology changes power structures
+- Understanding history prevents repeating it
+
+**Nav call:** `renderNav('history')`
+
+---
+
+### pages/health.html — Health & Nutrition
+
+**URL:** https://saumitraphatak.github.io/realworld-academy/pages/health.html
+
+**Tab structure** (`data-group="health"`):
+
+**Tab 1: Nutrition**
+- Macronutrients: protein (4 kcal/g), carbohydrates (4 kcal/g), fat (9 kcal/g)
+- Micronutrients: vitamins (fat-soluble A/D/E/K vs water-soluble B/C), key minerals (iron, calcium, magnesium)
+- How to read a nutrition label
+- Debunking diet myths (fat doesn't make you fat, carbs aren't evil, breakfast myths)
+- The Mediterranean diet evidence base
+
+**Tab 2: Sleep**
+- Sleep architecture: NREM stages 1–3, REM, 90-minute cycles
+- What happens during sleep: memory consolidation, growth hormone release, cellular repair, glymphatic system (brain waste clearance)
+- Sleep deprivation effects: less than 7 hours increases obesity, diabetes, cardiovascular disease risk; one night of poor sleep reduces decision-making by 40%
+- Sleep hygiene: consistent schedule, dark/cool room, no screens 1 hour before bed, caffeine half-life (5–6 hours)
+
+**Tab 3: Exercise**
+- Cardio: VO2 max, Zone 2 training, cardiovascular adaptations
+- Strength training: progressive overload, compound lifts (squat, deadlift, press), muscle protein synthesis
+- HIIT: Tabata protocol, metabolic benefits, EPOC
+- Exercise at the cellular level: mitochondrial biogenesis, BDNF (brain-derived neurotrophic factor)
+
+**Tab 4: Gut Health**
+- The gut microbiome: 38 trillion bacteria, 500+ species
+- Gut-brain axis: 90% of serotonin is produced in the gut
+- Prebiotics (food for bacteria: onions, garlic, oats) vs probiotics (live bacteria: yogurt, kefir, kimchi)
+- Fibre's role, antibiotic effects on gut flora, and how to rebuild
+
+**Nav call:** `renderNav('health')`
+
+---
+
+### pages/meditation.html — Meditation & Mind
+
+**URL:** https://saumitraphatak.github.io/realworld-academy/pages/meditation.html
+
+**Interactive feature:** Animated breathing timer for 4 techniques with visual cue (expanding/contracting circle) and phase labels (Inhale / Hold / Exhale).
+
+**4 Breathing Techniques:**
+1. **Box Breathing (4-4-4-4)** — Inhale 4s, Hold 4s, Exhale 4s, Hold 4s. Used by Navy SEALs for stress regulation.
+2. **4-7-8 Breathing** — Inhale 4s, Hold 7s, Exhale 8s. Dr. Andrew Weil's technique for sleep and anxiety.
+3. **Diaphragmatic Breathing** — Belly breathing, activates parasympathetic nervous system.
+4. **Alternate Nostril Breathing (Nadi Shodhana)** — Pranayama technique from yoga, balances left/right brain hemispheres.
+
+**Educational content:**
+- Neuroscience of mindfulness: prefrontal cortex strengthening, amygdala shrinkage (8-week MBSR study)
+- Different meditation styles: Vipassana, Loving-Kindness (Metta), Transcendental, Zen
+- How to start a practice and stick with it
+- Common misconceptions about meditation ("emptying the mind")
+
+**Nav call:** `renderNav('meditation')`
+
+---
+
+### pages/puzzles.html — Puzzles & Brain Games
+
+**URL:** https://saumitraphatak.github.io/realworld-academy/pages/puzzles.html
+
+**Tab structure** — by age group:
+
+| Tab | Age Group | Recommended Puzzles |
+|-----|-----------|-------------------|
+| Tab 1 | Ages 3–5 | Jigsaw puzzles (12–24 pieces), shape sorters, peg puzzles |
+| Tab 2 | Ages 6–9 | Jigsaw (100 pieces), dominoes, Connect Four, Battleship |
+| Tab 3 | Ages 10–13 | Rubik's Cube, chess basics, Sudoku (easy), Mastermind |
+| Tab 4 | Ages 14+ | 3x3 speed-cubing, chess strategy, Sudoku (hard), logic puzzles |
+
+**Cognitive skills table** — maps each puzzle type to the cognitive skill it develops:
+- Rubik's Cube → algorithmic thinking, spatial reasoning, working memory, persistence
+- Chess → planning, pattern recognition, foresight, consequence thinking
+- Jigsaw puzzles → spatial reasoning, visual discrimination, patience
+- Sudoku → logical deduction, working memory, concentration
+- Crosswords → vocabulary, verbal memory, general knowledge
+
+**Nav call:** `renderNav('puzzles')`
+
+---
+
+### pages/books.html — Books Worth Reading
+
+**URL:** https://saumitraphatak.github.io/realworld-academy/pages/books.html
+
+**Tab structure** — 7 categories, 40+ books total:
+
+1. **Finance** — The Psychology of Money (Morgan Housel), Rich Dad Poor Dad (Kiyosaki), The Millionaire Next Door, I Will Teach You to Be Rich (Ramit Sethi), A Random Walk Down Wall Street
+2. **Psychology** — Thinking, Fast and Slow (Kahneman), Influence (Cialdini), The Power of Habit (Duhigg), Man's Search for Meaning (Frankl), Atomic Habits (Clear)
+3. **Philosophy** — Meditations (Marcus Aurelius), The Obstacle Is the Way (Ryan Holiday), Letters from a Stoic (Seneca), The Republic (Plato), Sophie's World (Jostein Gaarder)
+4. **Science** — A Brief History of Time (Hawking), The Selfish Gene (Dawkins), Sapiens (Harari), The Gene (Mukherjee), Why We Sleep (Walker)
+5. **History** — Guns, Germs, and Steel (Diamond), The Silk Roads (Frankopan), The Second World War (Churchill), SPQR (Mary Beard), The Wright Brothers (McCullough)
+6. **Health** — Why We Sleep (Walker), How Not to Die (Greger), The Body (Bill Bryson), Outlive (Peter Attia), Breath (James Nestor)
+7. **General / Mindset** — Man's Search for Meaning, Mindset (Dweck), The 7 Habits of Highly Effective People (Covey), Deep Work (Newport), Range (Epstein)
+
+Each book entry includes: author, year, one-paragraph summary, and key takeaway.
+
+**Nav call:** `renderNav('books')`
+
+---
+
+### pages/home-skills.html — Home Skills
+
+**URL:** https://saumitraphatak.github.io/realworld-academy/pages/home-skills.html
+
+**Topics (accordion cards):**
+1. **Plumbing Basics** — How to unclog a drain (plunger technique, drain snake), fix a running toilet (flapper valve, fill valve), fix a dripping tap (replacing washers/cartridges), shut off valves location
+2. **Electrical Safety** — How to reset a tripped circuit breaker, replace an outlet/switch (with safety precautions), understand GFCI outlets, when to call a licensed electrician
+3. **Essential Tools** — The tools every home needs: hammer, flathead and Phillips screwdrivers, adjustable wrench, pliers, utility knife, tape measure, level, stud finder, power drill
+4. **Seasonal Maintenance Checklist** — Spring (HVAC filter, check roof), Summer (outdoor faucets, deck maintenance), Autumn (clean gutters, winterise hoses), Winter (pipe insulation, smoke detector batteries)
+
+**Nav call:** `renderNav('home-skills')`
+
+---
+
+## Key Statistics Used on the Site
+
+- 78% of Americans live paycheck to paycheck
+- Historical average stock market return: ~7% annually (inflation-adjusted)
+- Rule of 72: divide 72 by interest rate to get years to double money
+- 200+ cognitive biases have been catalogued by researchers
+- Sleeping less than 7 hours significantly raises risk of obesity, diabetes, and cardiovascular disease
+- One poor night of sleep reduces decision-making ability by ~40%
+- 90% of the body's serotonin is produced in the gut
+- GPS satellites must correct for time dilation (general and special relativity) or would drift ~10 km/day
+- The Rubik's Cube has 43 quintillion possible permutations
+- 11 life-skill categories, 60+ tutorials, 0 useless memorisation
+
+---
+
+## Navigation Keys Reference
+
+| Page file | `renderNav()` key |
+|-----------|------------------|
+| index.html | `'home'` |
+| finance.html | `'finance'` |
+| psychology.html | `'psychology'` |
+| philosophy.html | `'philosophy'` |
+| science.html | `'science'` |
+| geography.html | `'geography'` |
+| history.html | `'history'` |
+| health.html | `'health'` |
+| meditation.html | `'meditation'` |
+| puzzles.html | `'puzzles'` |
+| books.html | `'books'` |
+| home-skills.html | `'home-skills'` |
