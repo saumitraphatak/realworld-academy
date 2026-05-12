@@ -1064,3 +1064,102 @@ p.lead { font-size: 1.125rem; color: var(--text-muted); }
   margin-bottom: 4px;
   z-index: 10;
 }
+
+/* ═══════════════════════════════════════════════════════
+   DARK MODE
+   ═══════════════════════════════════════════════════════ */
+
+[data-theme="dark"] {
+  --bg:           #0f172a;
+  --surface:      #1e293b;
+  --surface-2:    #162032;
+  --border:       rgba(255,255,255,.1);
+  --text:         #f1f5f9;
+  --text-muted:   #94a3b8;
+  --text-light:   #64748b;
+  --primary-light: rgba(79,70,229,.18);
+  --shadow-card:  0 0 0 1px rgba(255,255,255,.07), 0 4px 12px rgba(0,0,0,.4);
+  --shadow:       0 4px 12px rgba(0,0,0,.45);
+  --shadow-lg:    0 10px 30px rgba(0,0,0,.65);
+
+  /* Category backgrounds — shifted to dark translucent glows */
+  --finance-bg:  rgba(5,150,105,.15);
+  --psych-bg:    rgba(124,58,237,.15);
+  --phil-bg:     rgba(8,145,178,.15);
+  --sci-bg:      rgba(37,99,235,.15);
+  --geo-bg:      rgba(22,163,74,.15);
+  --hist-bg:     rgba(180,83,9,.15);
+  --health-bg:   rgba(220,38,38,.15);
+  --med-bg:      rgba(109,40,217,.15);
+  --puz-bg:      rgba(217,119,6,.15);
+  --books-bg:    rgba(146,64,14,.15);
+  --home-bg:     rgba(13,148,136,.15);
+}
+
+/* Dark callouts — swap hard light pastels for dark translucent tints */
+[data-theme="dark"] .callout-tip  { background: rgba(5,150,105,.1);  border-color: rgba(5,150,105,.35); }
+[data-theme="dark"] .callout-tip h4 { color: #34d399; }
+[data-theme="dark"] .callout-warn { background: rgba(217,119,6,.1);  border-color: rgba(217,119,6,.35); }
+[data-theme="dark"] .callout-warn h4 { color: #fbbf24; }
+[data-theme="dark"] .callout-info { background: rgba(37,99,235,.1);  border-color: rgba(37,99,235,.35); }
+[data-theme="dark"] .callout-info h4 { color: #60a5fa; }
+[data-theme="dark"] .callout-fact { background: rgba(124,58,237,.1); border-color: rgba(124,58,237,.35); }
+[data-theme="dark"] .callout-fact h4 { color: #a78bfa; }
+
+/* Dark buttons */
+[data-theme="dark"] .btn-outline { background: transparent; border-color: rgba(255,255,255,.15); color: var(--text-muted); }
+[data-theme="dark"] .btn-outline:hover { background: rgba(79,70,229,.18); border-color: var(--primary); color: var(--primary); }
+
+/* Dark tables */
+[data-theme="dark"] table  { background: var(--surface); border-color: var(--border); }
+[data-theme="dark"] th     { background: var(--surface-2) !important; color: var(--text) !important; }
+[data-theme="dark"] tr:hover { background: rgba(255,255,255,.04) !important; }
+[data-theme="dark"] td     { border-color: var(--border) !important; color: var(--text-muted); }
+
+/* Smooth transitions — targeted to avoid breaking CSS animations */
+body, .nav, .cat-card, .card, .topic-card, .topic-body, .tab-btn, .tab-panel,
+.stat-card, .callout, .tag, .btn-outline, .footer,
+.resources-wrap, .vid-card, .chart-wrap, .page-hero {
+  transition: background-color .28s ease, border-color .28s ease, color .28s ease;
+}
+
+/* ── Theme toggle button ── */
+.theme-toggle {
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: var(--space-3);
+  transition: border-color .2s, background .2s, transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.theme-toggle:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  transform: rotate(20deg) scale(1.1);
+}
+
+/* ── Reading progress bar ── */
+#reading-progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary) 0%, #818cf8 50%, var(--primary) 100%);
+  background-size: 200% 100%;
+  animation: progress-shimmer 2.5s linear infinite;
+  z-index: 9999;
+  transition: width .08s linear;
+  pointer-events: none;
+  border-radius: 0 2px 2px 0;
+}
+@keyframes progress-shimmer {
+  from { background-position: 100% 0; }
+  to   { background-position: -100% 0; }
+}

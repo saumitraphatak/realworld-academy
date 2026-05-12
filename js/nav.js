@@ -15,11 +15,23 @@ const NAV_LINKS = [
 ];
 
 function renderNav(activeKey) {
+  // Apply saved theme immediately to prevent flash of unstyled content
+  const savedTheme = localStorage.getItem('rwa-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  // Inject reading progress bar before nav
+  if (!document.getElementById('reading-progress')) {
+    const bar = document.createElement('div');
+    bar.id = 'reading-progress';
+    document.body.insertBefore(bar, document.body.firstChild);
+  }
+
   const nav = document.getElementById('main-nav');
   if (!nav) return;
   const isHome = activeKey === 'home';
   const prefix = isHome ? 'pages/' : '';
   const homeLink = isHome ? 'index.html' : '../index.html';
+  const isDark = savedTheme === 'dark';
 
   nav.innerHTML = `
     <div class="nav-inner">
@@ -34,8 +46,33 @@ function renderNav(activeKey) {
           return `<li><a href="${href}" class="${active}">${l.label}</a></li>`;
         }).join('')}
       </ul>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        ${isDark ? '☀️' : '🌙'}
+      </button>
     </div>
   `;
+}
+
+function initThemeToggle() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('rwa-theme', next);
+    btn.textContent = next === 'dark' ? '☀️' : '🌙';
+  });
+}
+
+function initReadingProgress() {
+  const bar = document.getElementById('reading-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+  }, { passive: true });
 }
 
 // Accordion for topic cards
@@ -79,6 +116,8 @@ function initRegions() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
+  initReadingProgress();
   initAccordions();
   initTabs();
   initRegions();
