@@ -231,6 +231,68 @@ function initQuiz() {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 }
 
+function initReadTracking() {
+  const topicCards = document.querySelectorAll('.topic-card');
+  if (!topicCards.length) return;
+  const filename = window.location.pathname.split('/').pop();
+  const pageKey = filename.replace('.html', '');
+  if (!pageKey || pageKey === 'index') return;
+  const storageKey = 'rwa-prog-' + pageKey;
+  const saved = JSON.parse(localStorage.getItem(storageKey) || 'null') || { read: [], total: 0 };
+  const readSet = new Set(saved.read || []);
+  if (saved.total !== topicCards.length) {
+    localStorage.setItem(storageKey, JSON.stringify({ read: Array.from(readSet), total: topicCards.length }));
+  }
+  topicCards.forEach((card, i) => {
+    const header = card.querySelector('.topic-header');
+    const chevron = header && header.querySelector('.topic-chevron');
+    if (!header || !chevron) return;
+    const done = readSet.has(i);
+    const btn = document.createElement('button');
+    btn.className = 'read-btn' + (done ? ' read-done' : '');
+    btn.textContent = done ? '✓' : '○';
+    btn.title = done ? 'Marked as read — click to undo' : 'Mark as read';
+    btn.setAttribute('aria-label', done ? 'Mark as unread' : 'Mark as read');
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (readSet.has(i)) {
+        readSet.delete(i);
+        btn.className = 'read-btn';
+        btn.textContent = '○';
+        btn.title = 'Mark as read';
+      } else {
+        readSet.add(i);
+        btn.className = 'read-btn read-done';
+        btn.textContent = '✓';
+        btn.title = 'Marked as read — click to undo';
+      }
+      localStorage.setItem(storageKey, JSON.stringify({ read: Array.from(readSet), total: topicCards.length }));
+    });
+    header.insertBefore(btn, chevron);
+  });
+}
+
+function renderHomepageProgress() {
+  if (!_navIsHome) return;
+  document.querySelectorAll('.cat-card').forEach(card => {
+    const href = card.getAttribute('href') || '';
+    const m = href.match(/pages\/(.+)\.html/);
+    if (!m) return;
+    const data = JSON.parse(localStorage.getItem('rwa-prog-' + m[1]) || 'null');
+    if (!data || !data.total || !(data.read || []).length) return;
+    const count = data.read.length;
+    const pct = Math.round(count / data.total * 100);
+    const el = document.createElement('div');
+    el.className = 'cat-progress';
+    el.innerHTML = `
+      <div class="cat-prog-bar">
+        <div class="cat-prog-fill${count === data.total ? ' complete' : ''}" style="width:${pct}%"></div>
+      </div>
+      <span class="cat-prog-label">${count} / ${data.total} read</span>`;
+    card.appendChild(el);
+  });
+}
+
 // Accordion for topic cards
 function initAccordions() {
   document.querySelectorAll('.topic-header').forEach(header => {
@@ -277,6 +339,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initDailyWisdom();
   initQuiz();
+  initReadTracking();
+  renderHomepageProgress();
   initAccordions();
   initTabs();
   initRegions();
