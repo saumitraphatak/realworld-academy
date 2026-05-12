@@ -1,4 +1,21 @@
 // Shared navigation component
+
+const DAILY_WISDOM = [
+  { key: 'finance',    icon: '💰', color: 'var(--finance)',    bg: 'var(--finance-bg)', category: 'Finance',    title: 'Compound Interest',       file: 'finance.html',    fact: 'Starting to invest $200/month at 22 instead of 32 can mean $300,000 more at retirement — same money, just a decade earlier.' },
+  { key: 'psychology', icon: '🧠', color: 'var(--psych)',      bg: 'var(--psych-bg)',   category: 'Psychology', title: 'Confirmation Bias',        file: 'psychology.html', fact: 'Your brain actively seeks out information that confirms what you already believe and quietly discards everything that doesn\'t. Naming it is the first defence.' },
+  { key: 'philosophy', icon: '🏛️', color: 'var(--philosophy)', bg: 'var(--phil-bg)',    category: 'Philosophy', title: 'Dichotomy of Control',     file: 'philosophy.html', fact: 'The Stoics divided all things into two: what you control (your thoughts, effort, responses) and what you don\'t. Worrying only about the first is the entire game.' },
+  { key: 'science',    icon: '🔬', color: 'var(--science)',    bg: 'var(--sci-bg)',     category: 'Science',    title: 'Newton\'s Third Law',      file: 'science.html',    fact: 'Every action has an equal and opposite reaction. You use it when walking: your foot pushes Earth backward, and Earth pushes you forward.' },
+  { key: 'geography',  icon: '🌍', color: 'var(--geo)',        bg: 'var(--geo-bg)',     category: 'Geography',  title: 'Why Rivers Made Cities',   file: 'geography.html',  fact: 'Almost every ancient civilisation — Egypt, Mesopotamia, Indus Valley, China — grew along rivers. Geography doesn\'t just show where things are; it explains why.' },
+  { key: 'history',    icon: '📜', color: 'var(--history)',    bg: 'var(--hist-bg)',    category: 'History',    title: 'The Printing Press Effect',file: 'history.html',    fact: 'Gutenberg\'s press (1440) didn\'t just spread books — it shattered the Church\'s monopoly on knowledge and triggered the Protestant Reformation within 80 years.' },
+  { key: 'health',     icon: '🥗', color: 'var(--health)',     bg: 'var(--health-bg)',  category: 'Health',     title: 'Sleep & Decision-Making',  file: 'health.html',     fact: 'Just one night under 7 hours reduces prefrontal cortex activity enough to impair decision-making as significantly as being legally drunk.' },
+  { key: 'meditation', icon: '🧘', color: 'var(--meditate)',   bg: 'var(--med-bg)',     category: 'Meditation', title: 'Box Breathing',            file: 'meditation.html', fact: 'Inhale 4 counts, hold 4, exhale 4, hold 4. Used by Navy SEALs under fire. It activates your parasympathetic nervous system in under 2 minutes.' },
+  { key: 'puzzles',    icon: '🧩', color: 'var(--puzzles)',    bg: 'var(--puz-bg)',     category: 'Puzzles',    title: 'Why Chess Matters',        file: 'puzzles.html',    fact: 'Chess players develop larger prefrontal cortices over time. It\'s not about memorising openings — it\'s about training the brain to evaluate long consequence chains.' },
+  { key: 'books',      icon: '📚', color: 'var(--books)',      bg: 'var(--books-bg)',   category: 'Books',      title: 'One Book Changes Everything', file: 'books.html',   fact: '"The Psychology of Money" argues that financial success depends less on maths and more on behaviour. The maths is easy; the behaviour is hard.' },
+  { key: 'home-skills',icon: '🔧', color: 'var(--home)',       bg: 'var(--home-bg)',    category: 'Home Skills',title: 'The Three Essential Tools', file: 'home-skills.html',fact: 'A drill, a set of screwdrivers, and a stud finder can handle 80% of home repairs. Most people overspend on tools they never use instead of mastering three simple ones.' },
+];
+
+let _navIsHome = false;
+
 const NAV_LINKS = [
   { href: '../index.html', label: '🏠 Home', key: 'home' },
   { href: 'finance.html', label: '💰 Finance', key: 'finance' },
@@ -15,6 +32,8 @@ const NAV_LINKS = [
 ];
 
 function renderNav(activeKey) {
+  _navIsHome = activeKey === 'home';
+
   // Apply saved theme immediately to prevent flash of unstyled content
   const savedTheme = localStorage.getItem('rwa-theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
@@ -75,6 +94,46 @@ function initReadingProgress() {
   }, { passive: true });
 }
 
+function initScrollReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      if (e.target.classList.contains('category-grid')) {
+        e.target.classList.add('animated');
+      } else {
+        e.target.classList.add('visible');
+      }
+      obs.unobserve(e.target);
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal, .category-grid').forEach(el => obs.observe(el));
+}
+
+function initDailyWisdom() {
+  const el = document.getElementById('daily-wisdom');
+  if (!el) return;
+  const dayIndex = Math.floor(Date.now() / 86400000) % DAILY_WISDOM.length;
+  const w = DAILY_WISDOM[dayIndex];
+  const prefix = _navIsHome ? 'pages/' : '';
+  el.innerHTML = `
+    <div class="daily-widget">
+      <div class="daily-deco">${w.icon}</div>
+      <div class="daily-icon" style="background:${w.bg}">${w.icon}</div>
+      <div class="daily-meta">
+        <div class="daily-eyebrow">Today's lesson &nbsp;·&nbsp; <span class="dw-cat">${w.category}</span></div>
+        <h3>${w.title}</h3>
+        <p>${w.fact}</p>
+      </div>
+      <a class="daily-action" href="${prefix}${w.file}"
+         style="color:${w.color};background:${w.bg}">
+        Explore →
+      </a>
+    </div>
+  `;
+  const widget = el.querySelector('.daily-widget');
+  widget.style.setProperty('--dw-color', w.color);
+}
+
 // Accordion for topic cards
 function initAccordions() {
   document.querySelectorAll('.topic-header').forEach(header => {
@@ -118,6 +177,8 @@ function initRegions() {
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initReadingProgress();
+  initScrollReveal();
+  initDailyWisdom();
   initAccordions();
   initTabs();
   initRegions();
