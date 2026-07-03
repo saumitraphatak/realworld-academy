@@ -30,11 +30,17 @@ RealWorld Academy is a free, static educational website covering 11 life-skill c
 realworld-academy/
 ├── index.html              # Home page — category grid (lives at root, NOT in pages/)
 ├── css/
-│   └── styles.css          # Full design system: CSS variables, reset, all component styles
+│   └── styles.css          # Full design system: CSS variables, reset, all component styles, dark theme overrides
 ├── js/
-│   └── nav.js              # Shared nav renderer + accordion / tab / region interactivity
+│   ├── nav.js                     # Shared nav renderer, dark-mode toggle, accordion/tab/region JS, per-page reading-progress tracker
+│   └── resources.js               # PAGE_RESOURCES data (credibility sources + YouTube picks per page) + renderResources()
+├── llms.txt                       # Short llmstxt.org-style index of the site for LLM crawlers
+├── llms-full.txt                  # Longer full-content dump of the site for LLM/RAG consumption
+├── robots.txt                     # Allows general + AI crawlers (GPTBot, ClaudeBot, Google-Extended, etc.); points to sitemap.xml
+├── sitemap.xml                    # XML sitemap of all pages for search engines
+├── google8a0c77e6409e4ccc.html    # Google Search Console site-verification file (do not remove/rename)
 └── pages/
-    ├── finance.html        # Compound interest calculator + budgeting / investing / tax / credit
+    ├── finance.html        # Compound interest calculator (Chart.js) + budgeting / investing / tax / credit
     ├── psychology.html     # Cognitive biases, memory techniques, emotional intelligence, mindset
     ├── philosophy.html     # Stoicism, logical fallacies, ethics, decision-making
     ├── science.html        # Newton's laws, why sky is blue, vaccines, GPS, everyday science
@@ -46,6 +52,8 @@ realworld-academy/
     ├── books.html          # 40+ books across 7 life-skill tab categories
     └── home-skills.html    # Practical home and DIY skills (plumbing, electrical, tools, maintenance)
 ```
+
+Every `pages/*.html` file also loads `js/resources.js` and calls `renderResources('key')` (alongside `renderNav('key')`) to render a "Sources & Further Watching" block from `PAGE_RESOURCES` in `resources.js`. Keys in `PAGE_RESOURCES` match nav keys exactly, including the hyphenated `'home-skills'` (accessed via bracket notation since it's not a valid JS identifier).
 
 ---
 
@@ -94,10 +102,12 @@ const NAV_LINKS = [
 ### Adding a new page:
 
 1. Add an entry to `NAV_LINKS` in `js/nav.js` with a unique `key`.
-2. Create `pages/your-page.html` following the existing page template.
+2. Create `pages/your-page.html` following the existing page template (see "HTML Page Boilerplate" below).
 3. Call `renderNav('your-key')` at the bottom of the new page.
-4. Add a category card to `index.html` linking to `pages/your-page.html`.
-5. Define a CSS accent color variable in `css/styles.css` under `:root`.
+4. Add a `PAGE_RESOURCES['your-key']` entry in `js/resources.js` (intro, `videos[]`, `sources[]`) and call `renderResources('your-key')` next to `renderNav()`.
+5. Add a category card to `index.html` linking to `pages/your-page.html`.
+6. Define a CSS accent color variable (and matching `-bg` variable) in `css/styles.css` under `:root`.
+7. Add the new page's URL to `sitemap.xml` and, ideally, a line to `llms.txt`.
 
 ---
 
@@ -216,7 +226,15 @@ Chart.js is loaded from CDN only on `finance.html`. Do not add it to other pages
 
 The compound interest chart is a `<canvas>` element rendered with `new Chart(ctx, config)`.
 
-### 5. Page Hero Section
+### 5. Dark Mode Toggle
+
+`nav.js` injects a `.theme-toggle` button into the rendered nav. On click it flips `document.documentElement`'s `data-theme` attribute between `light` (or absent) and `dark`, and persists the choice in `localStorage` under the key `rwa-theme`. On load, `renderNav()` reads `rwa-theme` and applies `data-theme` before rendering, so the correct theme is set as early as possible. All dark-theme overrides live in a single `[data-theme="dark"] { ... }` block (and related selectors) near the bottom of `css/styles.css` — add new dark-mode overrides there, do not scatter them.
+
+### 6. Per-Page Reading Progress Tracker
+
+`nav.js` also tracks which `.topic-card` accordions a visitor has opened on a given page, persisting `{ read: [...], total: N }` to `localStorage` under `rwa-prog-{pageKey}`. `renderHomepageProgress()` (called on `index.html`) reads all `rwa-prog-*` keys to show per-category completion on the home page category grid. This is automatic — it hooks into the existing accordion click handler — but if you add a new page with accordions, its progress will "just work" as long as `renderNav('your-key')` is called with the correct key (the storage key is derived from it).
+
+### 7. Page Hero Section
 
 Every content page starts with a hero section using the category accent color:
 
@@ -279,12 +297,16 @@ Every `pages/*.html` file follows this structure:
 
 <section class="page-hero section">...</section>
 
-<!-- Page content sections -->
+<!-- Page content sections (topic-card accordions, tabs, etc.) -->
+
+<!-- Sources & Further Watching block, rendered by renderResources() -->
+<div id="page-resources"></div>
 
 <footer class="footer">...</footer>
 
 <script src="../js/nav.js"></script>
-<script>renderNav('page-key');</script>
+<script src="../js/resources.js"></script>
+<script>renderNav('page-key'); renderResources('page-key');</script>
 </body>
 </html>
 ```
@@ -312,3 +334,7 @@ Every `pages/*.html` file follows this structure:
 8. **No JavaScript modules:** All JS is plain scripts with global scope. Do not use `import`/`export` or `type="module"`.
 9. **Fonts load from Google Fonts CDN** — the site requires internet access to render Inter correctly. No local font fallback is bundled.
 10. **git is at `/usr/bin/git`** — the environment has no npm/node/bun/pnpm/yarn.
+11. **`renderResources(pageKey)` requires a matching `PAGE_RESOURCES[pageKey]` entry** in `js/resources.js` — if you add a page without adding the matching resources object, the "Sources & Further Watching" section will silently render empty.
+12. **`data-theme="dark"` is applied to `<html>`, not `<body>`** — dark-mode CSS selectors must be scoped as `[data-theme="dark"] .foo`, not `body[data-theme="dark"] .foo`.
+13. **`llms.txt` / `llms-full.txt` / `sitemap.xml` are hand-maintained**, not generated. When adding or renaming a page, update all three plus `robots.txt`'s sitemap reference if the domain ever changes.
+14. **`google8a0c77e6409e4ccc.html` is a Google Search Console ownership-verification file** — it must stay at the repo root with that exact filename or Search Console verification breaks.

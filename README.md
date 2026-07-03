@@ -1,6 +1,6 @@
 # RealWorld Academy
 
-A free, open-source web encyclopedia for practical life skills — the knowledge school never taught you. Built as a pure static site (no frameworks, no build tools), deployable anywhere.
+RealWorld Academy is a free, open-source website that teaches the practical life skills school typically skips — personal finance, psychology, philosophy, everyday science, geography, history, health, meditation, puzzles, books, and home skills. Each subject is its own page with expandable lesson cards, interactive tools (a compound interest calculator, a clickable world map, a guided breathing timer), and curated further-reading/watching resources. It's a pure static site — no frameworks, no build tools, no account required — so it's simple to run locally and deploy anywhere.
 
 **Live site:** https://saumitraphatak.github.io/realworld-academy/
 
@@ -20,6 +20,7 @@ A free, open-source web encyclopedia for practical life skills — the knowledge
 | **Meditation** | Interactive breathing timer with 4 guided techniques |
 | **Puzzles** | Age-appropriate puzzle guide + cognitive skills reference table |
 | **Books** | Curated reading list of 40+ books across 7 life-skill categories |
+| **Home Skills** | Plumbing basics, electrical safety, essential tools, seasonal maintenance |
 
 ---
 
@@ -29,6 +30,7 @@ A free, open-source web encyclopedia for practical life skills — the knowledge
 - **Chart.js** (via CDN) — compound interest chart on the Finance page
 - **Google Fonts** (Inter) — loaded via CDN
 - **SVG world map** — fully inline, no third-party map library
+- **localStorage** — powers the dark/light theme toggle and per-page reading-progress tracking, no backend involved
 
 No npm. No webpack. No frameworks. Open any `.html` file directly in a browser and it works.
 
@@ -40,9 +42,10 @@ No npm. No webpack. No frameworks. Open any `.html` file directly in a browser a
 realworld-academy/
 ├── index.html              # Home page — category grid
 ├── css/
-│   └── styles.css          # Full design system (CSS variables, all components)
+│   └── styles.css          # Full design system (CSS variables, light + dark themes, all components)
 ├── js/
-│   └── nav.js              # Shared nav renderer + accordion / tab / region JS
+│   ├── nav.js              # Shared nav renderer, dark-mode toggle, accordion / tab / region JS, reading-progress tracker
+│   └── resources.js        # Per-page "Sources & Further Watching" data + renderer
 └── pages/
     ├── finance.html
     ├── psychology.html
@@ -53,37 +56,33 @@ realworld-academy/
     ├── health.html
     ├── meditation.html
     ├── puzzles.html
-    └── books.html
+    ├── books.html
+    └── home-skills.html
 ```
 
 ---
 
 ## Design System
 
-Accent colors are defined as CSS custom properties so each category has its own visual identity:
-
-```css
---finance:    #10b981;
---psych:      #8b5cf6;
---philosophy: #f59e0b;
---science:    #3b82f6;
---geography:  #06b6d4;
---history:    #ef4444;
---health:     #ec4899;
-```
+Accent colors are defined as CSS custom properties so each category has its own visual identity (see `:root` in `css/styles.css` for the full list, e.g. `--finance`, `--psych`, `--philosophy`, `--science`, `--geo`, `--history`, `--health`, `--meditate`, `--puzzles`, `--books`, `--home`). A dark theme is layered on top via a `[data-theme="dark"]` attribute selector, toggled by the moon/sun button in the nav.
 
 ### Component patterns
 
 | Pattern | How it works |
 |---|---|
-| **Accordion topics** | `.topic-card` > `.topic-header` + `.topic-body` — click to expand |
+| **Accordion topics** | `.topic-card` > `.topic-header` + `.topic-body` — click to expand, handled by `initAccordions()` |
 | **Tabs** | `.tab-bar[data-group]` > `.tab-btn[data-tab]` handled by `initTabs()` |
-| **Region cards** | `data-region` + `id="region-{key}"` for map ↔ sidebar linking |
+| **Region cards** | `data-region` + `id="region-{key}"` for map ↔ sidebar linking, handled by `initRegions()` |
 | **Active nav** | `renderNav(activeKey)` called on each page with its key |
+| **Sources & videos** | `renderResources(activeKey)` renders each page's curated links from `js/resources.js` |
+
+For the full set of conventions (nav internals, CSS variable reference, HTML page boilerplate, "how to add a new page" checklist), see [`CLAUDE.md`](./CLAUDE.md).
 
 ---
 
 ## Running Locally
+
+No build step and no dependencies to install — just get the files and open them.
 
 ```bash
 git clone https://github.com/saumitraphatak/realworld-academy.git
@@ -94,7 +93,12 @@ xdg-open index.html    # Linux
 # or just drag index.html into a browser
 ```
 
-No server required. No install step.
+Alternatively, serve it with any local web server (recommended if you want relative paths/fonts to behave exactly like production):
+
+```bash
+python3 -m http.server 8000
+# then visit http://localhost:8000
+```
 
 ---
 
